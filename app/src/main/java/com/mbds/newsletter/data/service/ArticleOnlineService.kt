@@ -1,4 +1,12 @@
-package com.mbds.newsletter.data
+package com.mbds.newsletter.data.service
+
+import com.mbds.newsletter.models.Article
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ArticleOnlineService : ArticleService {
     private val service: RetrofitApiService
@@ -62,6 +70,6 @@ class ArticleOnlineService : ArticleService {
 
     companion object {
         private const val apiKey = "YOUR_API_KEY"
-        private const val apiUrl = "THE_API_URL"
+        private const val apiUrl = "https://newsapi.org/"
     }
 }

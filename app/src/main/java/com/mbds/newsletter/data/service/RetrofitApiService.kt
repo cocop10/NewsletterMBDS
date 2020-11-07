@@ -1,4 +1,8 @@
-package com.mbds.newsletter.data
+package com.mbds.newsletter.data.service
+
+import com.mbds.newsletter.models.Article
+import retrofit2.Call
+import retrofit2.http.GET
 
 interface RetrofitApiService {
     //GET --> On lance une requête de type GET
