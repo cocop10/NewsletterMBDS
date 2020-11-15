@@ -1,6 +1,7 @@
 package com.mbds.newsletter.data.service
 
 import com.mbds.newsletter.models.Article
+import com.mbds.newsletter.models.ArticleQuery
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -64,8 +65,9 @@ class ArticleOnlineService : ArticleService {
         })
     }
 
-    override fun getArticles(): List<Article> {
-        return service.list().execute().body() ?: listOf()
+    override fun getArticles(): ArticleQuery {
+        val query = service.list().execute().body()
+        return query!!
     }
 
     companion object {
