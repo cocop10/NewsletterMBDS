@@ -4,7 +4,11 @@ import com.mbds.newsletter.data.service.ArticleOnlineService
 import com.mbds.newsletter.models.Article
 
 class ArticleRepository {
-    private val apiService: ArticleOnlineService = ArticleOnlineService()
+    private val apiService: ArticleOnlineService
+
+    init {
+        apiService = ArticleOnlineService()
+    }
 
     fun getArticles(): List<Article> = apiService.getArticles()
 
