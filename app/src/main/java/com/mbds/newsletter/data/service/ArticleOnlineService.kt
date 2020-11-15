@@ -1,6 +1,7 @@
 package com.mbds.newsletter.data.service
 
 import com.mbds.newsletter.models.Article
+import com.mbds.newsletter.models.ArticleQuery
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -53,7 +54,7 @@ class ArticleOnlineService : ArticleService {
                 val original = chain.request()
                 val originalHttpUrl = original.url
                 val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", apiKey)
+                    .addQueryParameter("apiKey", apiKey)
                     .build()
 
                 val requestBuilder = original.newBuilder()
@@ -64,12 +65,14 @@ class ArticleOnlineService : ArticleService {
         })
     }
 
-    override fun getArticles(): List<Article> {
-        return service.list().execute().body() ?: listOf()
+    override fun getArticles(): ArticleQuery {
+        val query = service.list("everything").execute().body()
+        return query!!
     }
 
     companion object {
-        private const val apiKey = "YOUR_API_KEY"
+        private const val apiKey = "3619955908054248a433678895e7c6e4"
         private const val apiUrl = "https://newsapi.org/"
     }
+
 }
