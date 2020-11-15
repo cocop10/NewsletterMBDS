@@ -12,6 +12,8 @@ import com.mbds.newsletter.R
 import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ListArticlesAdapter(
     items: ArticleQuery, private val handler: ArticleListFragment
@@ -27,14 +29,19 @@ class ListArticlesAdapter(
         val article: Article = mArticles.articles[position]
         val context = holder.itemView.context
 
+        //Conversion de la date
+        val sdfOut = SimpleDateFormat("dd-MM-yyyy")
+        val date: Date = article.publishedAt
+        val dateString = sdfOut.format(date)
+
         // Display Neighbour Name
         holder.mArticleName.text = article.title
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
-        holder.mArticleDate.text = article.date
+        holder.mArticleDate.text = dateString
 
         Glide.with(context)
-            .load(article.imgUrl)
+            .load(article.urlToImage)
             .placeholder(R.drawable.ic_baseline_image_24)
             .error(R.drawable.ic_baseline_image_24)
             .skipMemoryCache(false)

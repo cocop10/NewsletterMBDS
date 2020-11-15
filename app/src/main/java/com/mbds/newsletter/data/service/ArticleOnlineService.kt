@@ -54,7 +54,7 @@ class ArticleOnlineService : ArticleService {
                 val original = chain.request()
                 val originalHttpUrl = original.url
                 val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", apiKey)
+                    .addQueryParameter("apiKey", apiKey)
                     .build()
 
                 val requestBuilder = original.newBuilder()
@@ -66,7 +66,7 @@ class ArticleOnlineService : ArticleService {
     }
 
     override fun getArticles(): ArticleQuery {
-        val query = service.list().execute().body()
+        val query = service.list("everything").execute().body()
         return query!!
     }
 

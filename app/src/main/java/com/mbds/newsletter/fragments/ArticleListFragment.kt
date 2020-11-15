@@ -44,9 +44,7 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val articles = ArticleRepository.getInstance().getArticles()
-        val adapter = ListArticlesAdapter(articles, this)
-        recyclerView.adapter = adapter
+        getArticles()
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.articles_list)
