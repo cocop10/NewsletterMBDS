@@ -9,5 +9,5 @@ data class Article (
     val publishedAt: Date,
     val urlToImage: String,
     val content: String,
-    val favorite: Boolean
+    var favorite: Boolean
 )

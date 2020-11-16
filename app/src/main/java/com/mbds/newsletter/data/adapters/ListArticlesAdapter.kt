@@ -39,6 +39,12 @@ class ListArticlesAdapter(
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
         holder.mArticleDate.text = dateString
+        // Initialisation button fav
+        if (!article.favorite) holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24) else holder.mFavoriteButton.setImageResource(
+            R.drawable.ic_baseline_favorite_24
+        )
+
+
 
         Glide.with(context)
             .load(article.urlToImage)
@@ -48,12 +54,16 @@ class ListArticlesAdapter(
             .into(holder.mArticleAvatar)
 
         holder.mFavoriteButton.setOnClickListener {
-
+            if (!article.favorite){
+                holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                article.favorite = true
+            }
+            else
+            {
+                article.favorite = false
+                holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            }
         }
-
-        if (!article.favorite) holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24) else holder.mFavoriteButton.setImageResource(
-            R.drawable.ic_baseline_favorite_24
-        )
     }
 
     override fun getItemCount(): Int {
