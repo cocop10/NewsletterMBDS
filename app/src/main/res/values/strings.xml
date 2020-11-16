@@ -26,4 +26,9 @@
     <string name="listArticleBtn">Liste des articles</string>
     <string name="aProposBtn">En savoir plus sur la team</string>
 
+    <!-- menu bottom_nav_menu.xml -->
+    <string name="title_article">Acceuil</string>
+    <string name="title_favorite">Favoris</string>
+    <string name="title_aboutus">A Propos de nous</string>
+
 </resources>
