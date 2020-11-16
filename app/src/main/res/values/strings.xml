@@ -5,4 +5,24 @@
     <string name="articles">Articles</string>
     <string name="articles_avatar">Illustration de l\'article</string>
     <string name="articles_favorite">Bouton de mise en favori de l\'article</string>
+
+
+    <!-- about_us.xml -->
+    <string name="apropos_page">A propos de nous</string>
+    <string name="team"><u>Equipe</u></string>
+    <string name="coco">- Corentin POIRIER</string>
+    <string name="nico">- Nicolas CAO</string>
+    <string name="vince">- Vincent GUINALDO</string>
+    <string name="link_repo_title"><u>Lien de notre GitHub</u></string>
+    <string name="link_repo">https://github.com/ncao98/NewsletterMBDS</string>
+    <string name="libraries_title"><u>Librairies Externes</u></string>
+    <string name="librarie1">- Librairie 1</string>
+    <string name="librarie2">- Librairie 2</string>
+    <string name="librarie3">- Librairie 3</string>
+    <string name="librarie4">- Librairie 4</string>
+
+    <!-- page acceuil home.xml -->
+    <string name="home">Acceuil</string>
+    <string name="aPropos">En savoir plus sur la team</string>
+
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.mbds.newsletter.fragments.ArticleListFragment
+import com.mbds.newsletter.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar
@@ -15,7 +16,8 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        showFragment(ArticleListFragment())
+        //showFragment(ArticleListFragment())
+        showFragment(HomeFragment())
     }
 
     override fun showFragment(fragment: Fragment) {
