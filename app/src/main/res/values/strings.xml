@@ -23,6 +23,7 @@
 
     <!-- page acceuil home.xml -->
     <string name="home">Acceuil</string>
-    <string name="aPropos">En savoir plus sur la team</string>
+    <string name="listArticleBtn">Liste des articles</string>
+    <string name="aProposBtn">En savoir plus sur la team</string>
 
 </resources>
