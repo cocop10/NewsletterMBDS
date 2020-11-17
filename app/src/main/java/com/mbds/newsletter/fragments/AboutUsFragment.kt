@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 
 class AboutUsFragment : Fragment(){
@@ -17,7 +15,7 @@ class AboutUsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.about_us, container, false)
+        val view = inflater.inflate(R.layout.about_us_fragment, container, false)
 
         return view
     }
