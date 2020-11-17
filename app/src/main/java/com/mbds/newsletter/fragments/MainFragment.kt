@@ -37,8 +37,8 @@ class MainFragment : Fragment(), ListSourcesHandler {
     ): View? {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         recyclerView = view.findViewById(R.id.source_list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         return view
     }
 
