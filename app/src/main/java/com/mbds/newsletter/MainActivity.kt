@@ -1,11 +1,16 @@
 package com.mbds.newsletter
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.mbds.newsletter.fragments.ArticleListFragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mbds.newsletter.fragments.HomeFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import com.mbds.newsletter.fragments.ArticleListFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar
@@ -17,7 +22,23 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         setSupportActionBar(toolbar)
 
         //showFragment(ArticleListFragment())
-        showFragment(HomeFragment())
+        //showFragment(HomeFragment())
+
+        val navView = findViewById<BottomNavigationView>(R.id.nav_view)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_about_us)
+        val navController: NavController =
+            Navigation.findNavController(this, R.id.fragment_container)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration.build())
+        NavigationUI.setupWithNavController(navView, navController)
+
+
+
+
     }
 
     override fun showFragment(fragment: Fragment) {

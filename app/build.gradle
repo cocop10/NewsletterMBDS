@@ -62,4 +62,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
     //afficher des infos a l'ecran
     implementation "org.jetbrains.anko:anko-common:$anko_version"
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
 }

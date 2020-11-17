@@ -10,7 +10,7 @@ import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 
 class AboutUsFragment : Fragment(){
-    lateinit var homeButton : FloatingActionButton
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,17 +18,12 @@ class AboutUsFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.about_us, container, false)
-        homeButton = view.findViewById(R.id.btn_home)
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeButton.setOnClickListener {
-            (activity as? NavigationListener)?.let {
-                it.showFragment(HomeFragment())
-                it.updateTitle(R.string.home)
-            }
-        }
+
     }
 }

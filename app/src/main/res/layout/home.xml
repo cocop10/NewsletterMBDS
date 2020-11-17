@@ -20,16 +20,6 @@ android:layout_height="match_parent">
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
-
-
-        <Button
-            android:id="@+id/btn_a_propos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonhome_aboutus"
-            android:text="@string/aProposBtn"
-            android:textColor="@color/white" />
-
     </RelativeLayout>
 
 
@@ -44,13 +34,6 @@ android:layout_height="match_parent">
 
 
 
-        <Button
-            android:id="@+id/btn_list_articles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonhome_aboutus"
-            android:text="@string/listArticleBtn"
-            android:textColor="@color/white" />
 
     </RelativeLayout>
 
