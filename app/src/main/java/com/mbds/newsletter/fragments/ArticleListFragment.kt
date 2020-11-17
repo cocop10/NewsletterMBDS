@@ -33,12 +33,6 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
         val view = inflater.inflate(R.layout.list_articles_fragment, container, false)
         recyclerView = view.findViewById(R.id.article_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
         return view
     }
 

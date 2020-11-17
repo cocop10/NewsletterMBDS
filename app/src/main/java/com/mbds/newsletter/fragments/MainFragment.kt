@@ -37,8 +37,8 @@ class MainFragment : Fragment(), ListSourcesHandler {
     ): View? {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
         recyclerView = view.findViewById(R.id.source_list)
-//        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         return view
     }
 
@@ -71,5 +71,14 @@ class MainFragment : Fragment(), ListSourcesHandler {
             val adapter = ListSourcesAdapter(sources, this@MainFragment)
             recyclerView.adapter = adapter
         }
+    }
+
+    /**
+     * Ajouter des fragments enfants dans un fragment mère
+     */
+    private fun Fragment.addChildFragment(fragment: Fragment, frameId: Int) {
+
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(frameId, fragment).commit()
     }
 }
