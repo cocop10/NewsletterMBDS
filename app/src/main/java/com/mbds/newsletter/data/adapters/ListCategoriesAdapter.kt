@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.fragments.ArticleListFragment
+import com.mbds.newsletter.fragments._CategoryFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import com.mbds.newsletter.models.Category
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ListCategoriesAdapter() : RecyclerView.Adapter<ListCategoriesAdapter.ViewHolder>() {
+class ListCategoriesAdapter(holder: _CategoryFragment) : RecyclerView.Adapter<ListCategoriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chip_item, parent, false)
@@ -24,9 +25,13 @@ class ListCategoriesAdapter() : RecyclerView.Adapter<ListCategoriesAdapter.ViewH
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        for (category in Category.values()) {
-            holder.mCategoryname.text = category.name
-        }
+        val list: MutableList<String> = mutableListOf()
+
+        enumValues<Category>().forEach { list += listOf(it.name) }
+
+        val category: String = list[position]
+
+        holder.mCategoryname.text = category
     }
 
     override fun getItemCount(): Int {
