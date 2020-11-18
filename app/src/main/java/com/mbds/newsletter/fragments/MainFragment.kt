@@ -46,6 +46,7 @@ class MainFragment : Fragment() {
             it.updateTitle(R.string.articles_list)
             it.addChildFragment(_SourceFragment(), R.id.list_sources_fragment)
             it.addChildFragment(_CategoryFragment(), R.id.list_categories_fragment)
+            it.addChildFragment(_CountryFragment(), R.id.list_countries_fragment)
         }
     }
 }

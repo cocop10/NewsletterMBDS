@@ -57,6 +57,27 @@
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/countries_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="@string/countries" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/countriesGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:singleLine="true">
+
+                <FrameLayout
+                    android:id="@+id/list_countries_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
