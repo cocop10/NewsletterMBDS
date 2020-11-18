@@ -7,4 +7,6 @@ interface NavigationListener {
     fun showFragment(fragment: Fragment)
 
     fun updateTitle(@StringRes title: Int)
+
+    fun addChildFragment(fragment: Fragment, frameId: Int)
 }

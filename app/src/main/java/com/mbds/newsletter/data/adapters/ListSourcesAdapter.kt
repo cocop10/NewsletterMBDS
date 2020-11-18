@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
 import com.mbds.newsletter.fragments.MainFragment
+import com.mbds.newsletter.fragments._SourceFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.Source
 import com.mbds.newsletter.models.SourceQuery
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListSourcesAdapter(
-    items: SourceQuery, private val handler: MainFragment
+    items: SourceQuery, private val handler: _SourceFragment
 ) : RecyclerView.Adapter<ListSourcesAdapter.ViewHolder>() {
     private val mSources: SourceQuery = items
 

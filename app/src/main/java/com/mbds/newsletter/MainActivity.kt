@@ -30,4 +30,11 @@ class MainActivity : AppCompatActivity(), NavigationListener {
     override fun updateTitle(title: Int) {
         toolbar.setTitle(title)
     }
+
+    override fun addChildFragment(fragment: Fragment, frameId: Int) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(frameId, fragment)
+            addToBackStack(null)
+        }.commit()
+    }
 }
