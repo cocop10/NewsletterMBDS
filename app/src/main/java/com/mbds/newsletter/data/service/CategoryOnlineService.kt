@@ -1,6 +1,7 @@
 package com.mbds.newsletter.data.service
 
 import com.mbds.newsletter.models.ArticleQuery
+import com.mbds.newsletter.models.Category
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -8,7 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ArticleOnlineService : ArticleService {
+class CategoryOnlineService : CategoryService {
     private val service: RetrofitApiService
 
     init {
@@ -63,9 +64,8 @@ class ArticleOnlineService : ArticleService {
             }
         })
     }
-
-    override fun getArticles(): ArticleQuery {
-        val query = service.list("everything").execute().body()
+    override fun getArticles(category: Category): ArticleQuery {
+        val query = service.category(category).execute().body()
         return query!!
     }
 

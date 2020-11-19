@@ -1,9 +1,11 @@
 package com.mbds.newsletter
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.mbds.newsletter.fragments.ArticleListFragment
+import com.mbds.newsletter.fragments.MainFragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,5 +50,12 @@ class MainActivity : AppCompatActivity(), NavigationListener {
 
     override fun updateTitle(title: Int) {
         toolbar.setTitle(title)
+    }
+
+    override fun addChildFragment(fragment: Fragment, frameId: Int) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(frameId, fragment)
+            addToBackStack(null)
+        }.commit()
     }
 }
