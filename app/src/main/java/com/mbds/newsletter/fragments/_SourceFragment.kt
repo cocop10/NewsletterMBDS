@@ -13,6 +13,7 @@ import com.mbds.newsletter.R
 import com.mbds.newsletter.data.SourceRepository
 import com.mbds.newsletter.data.adapters.ListSourcesAdapter
 import com.mbds.newsletter.data.adapters.ListSourcesHandler
+import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.SourceQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,8 +53,11 @@ class _SourceFragment: Fragment(), ListSourcesHandler {
         }
     }
 
-    override fun getArticles() {
-        TODO("Not yet implemented")
+    override fun showArticles(query: String) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleListFragment(query, "_SourceFragment"))
+            it.updateTitle(R.string.articles_list)
+        }
     }
 
     /**

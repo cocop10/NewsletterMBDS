@@ -1,6 +1,7 @@
 package com.mbds.newsletter.data.service
 
 import com.mbds.newsletter.models.ArticleQuery
+import com.mbds.newsletter.models.Country
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -64,8 +65,28 @@ class ArticleOnlineService : ArticleService {
         })
     }
 
-    override fun getArticles(): ArticleQuery {
-        val query = service.list("everything").execute().body()
+    override fun getArticles(query: String): ArticleQuery {
+        val query = service.list(query).execute().body()
+        return query!!
+    }
+
+    override fun getCategoryArticles(query: String): ArticleQuery {
+        val query = service.category(query).execute().body()
+        return query!!
+    }
+
+    override fun getCountryArticles(query: String): ArticleQuery {
+        val query = service.country(query).execute().body()
+        return query!!
+    }
+
+    override fun getSourceArticles(query: String): ArticleQuery {
+        val query = service.source(query).execute().body()
+        return query!!
+    }
+
+    override fun getHeadlines(): ArticleQuery {
+        val query = service.country("fr").execute().body()
         return query!!
     }
 

@@ -1,6 +1,7 @@
 package com.mbds.newsletter.data.adapters
 
+import androidx.fragment.app.Fragment
+
 interface ListArticlesHandler {
-    fun getArticles()
-    fun showArticles()
+    fun getArticles(query: String, fragment: String)
 }

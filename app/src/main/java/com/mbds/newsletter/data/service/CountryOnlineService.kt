@@ -67,7 +67,7 @@ class CountryOnlineService : CountryService {
     }
 
     override fun getArticles(country: Country): ArticleQuery {
-        val query = service.country(country).execute().body()
+        val query = service.country(country.toString()).execute().body()
         return query!!
     }
 
