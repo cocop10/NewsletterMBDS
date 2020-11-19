@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListSourcesAdapter(
-    items: SourceQuery, private val handler: _SourceFragment
+    items: SourceQuery, private val handler: ListSourcesHandler
 ) : RecyclerView.Adapter<ListSourcesAdapter.ViewHolder>() {
     private val mSources: SourceQuery = items
 
@@ -31,7 +31,11 @@ class ListSourcesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val source: Source = mSources.sources[position]
 
-        holder.mSourceName.text = source.name
+        holder.mSourcename.text = source.name
+
+        holder.mSourcename.setOnClickListener {
+            handler.showArticles(holder.mSourcename.text as String)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,11 +44,11 @@ class ListSourcesAdapter(
 
     class ViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-        val mSourceName: TextView
+        val mSourcename: TextView
 
         init {
             // Enable click on item
-            mSourceName = view.findViewById(R.id.source_item)
+            mSourcename = view.findViewById(R.id.source_item)
         }
     }
 }

@@ -19,9 +19,9 @@ interface RetrofitApiService {
     fun source(@Query("sources") source: String): Call<ArticleQuery>
 
     @GET("v2/top-headlines")
-    fun category(@Query("category") category: Category): Call<ArticleQuery>
+    fun category(@Query("category") category: String): Call<ArticleQuery>
 
     @GET("v2/top-headlines")
-    fun country(@Query("country") country: Country): Call<ArticleQuery>
+    fun country(@Query("country") country: String): Call<ArticleQuery>
 
 }

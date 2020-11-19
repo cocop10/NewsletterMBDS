@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.adapters.ListCountriesAdapter
+import com.mbds.newsletter.data.adapters.ListSourcesHandler
+import com.mbds.newsletter.models.Article
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _CountryFragment: Fragment() {
+class _CountryFragment: Fragment(), ListSourcesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -32,9 +34,23 @@ class _CountryFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindData()
+        getSources()
 
         (activity as? NavigationListener)?.let {
+            it.updateTitle(R.string.articles_list)
+        }
+    }
+
+    /**
+     * Appelle la fonction bindData
+     */
+    override fun getSources() {
+        bindData()
+    }
+
+    override fun showArticles(query: String) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleListFragment(query, "_CountryFragment"))
             it.updateTitle(R.string.articles_list)
         }
     }
@@ -50,4 +66,5 @@ class _CountryFragment: Fragment() {
             recyclerView.adapter = adapter
         }
     }
+
 }

@@ -20,8 +20,10 @@ import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ArticleListFragment : Fragment(), ListArticlesHandler {
+class ArticleListFragment(query: String, nameFragment: String) : Fragment(), ListArticlesHandler {
     private lateinit var recyclerView: RecyclerView
+    private val query = query
+    private val nameFragment = nameFragment
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
      */
@@ -38,7 +40,7 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getArticles()
+        getArticles(this.query, this.nameFragment)
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.articles_list)
@@ -48,15 +50,20 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
     /**
      * Récupère la liste des articles dans un thread secondaire
      */
-    override fun getArticles() {
+    override fun getArticles(subject: String, fragment: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val articles = ArticleRepository.getInstance().getArticles()
+            val articles: ArticleQuery
+                    when (fragment) {
+                        "_ArticleFragment" -> articles = ArticleRepository.getInstance().getArticles(subject)
+                        "_CategoryFragment" -> articles = ArticleRepository.getInstance().getCategoryArticles(subject)
+                        "_CountryFragment" -> articles = ArticleRepository.getInstance().getCountryArticles(subject)
+                        "_SourceFragment" -> articles = ArticleRepository.getInstance().getSourceArticles(subject)
+                        else -> {
+                            articles = ArticleRepository.getInstance().getCountryArticles(subject)
+                        }
+                    }
             bindData(articles)
         }
-    }
-
-    override fun showArticles() {
-
     }
 
     /**

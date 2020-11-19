@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.fragments._CategoryFragment
@@ -19,7 +20,7 @@ import com.mbds.newsletter.models.Country
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ListCountriesAdapter(holder: _CountryFragment) : RecyclerView.Adapter<ListCountriesAdapter.ViewHolder>() {
+class ListCountriesAdapter(private val handler: ListSourcesHandler) : RecyclerView.Adapter<ListCountriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chip_item, parent, false)
@@ -34,6 +35,10 @@ class ListCountriesAdapter(holder: _CountryFragment) : RecyclerView.Adapter<List
         val country: String = list[position]
 
         holder.mCountryname.text = country
+
+        holder.mCountryname.setOnClickListener {
+            handler.showArticles(holder.mCountryname.text as String)
+        }
     }
 
     override fun getItemCount(): Int {

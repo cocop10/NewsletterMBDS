@@ -14,11 +14,12 @@ import com.mbds.newsletter.data.CategoryRepository
 import com.mbds.newsletter.data.SourceRepository
 import com.mbds.newsletter.data.adapters.ListCategoriesAdapter
 import com.mbds.newsletter.data.adapters.ListSourcesAdapter
+import com.mbds.newsletter.data.adapters.ListSourcesHandler
 import com.mbds.newsletter.models.SourceQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _CategoryFragment: Fragment() {
+class _CategoryFragment: Fragment(), ListSourcesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -36,9 +37,23 @@ class _CategoryFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindData()
+        getSources()
 
         (activity as? NavigationListener)?.let {
+            it.updateTitle(R.string.articles_list)
+        }
+    }
+
+    /**
+     * Appelle la fonction bindData
+     */
+    override fun getSources() {
+        bindData()
+    }
+
+    override fun showArticles(query: String) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleListFragment(query, "_CategoryFragment"))
             it.updateTitle(R.string.articles_list)
         }
     }

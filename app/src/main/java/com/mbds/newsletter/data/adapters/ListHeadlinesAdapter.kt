@@ -9,15 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
-import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ListArticlesAdapter(
-    items: ArticleQuery, private val handler: ListArticlesHandler
-) : RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
+class ListHeadlinesAdapter (
+    items: ArticleQuery, private val handler: ListHeadlinesHandler
+) : RecyclerView.Adapter<ListHeadlinesAdapter.ViewHolder>() {
     private val mArticles: ArticleQuery = items
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)

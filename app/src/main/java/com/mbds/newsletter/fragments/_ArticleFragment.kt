@@ -13,11 +13,13 @@ import com.mbds.newsletter.R
 import com.mbds.newsletter.data.ArticleRepository
 import com.mbds.newsletter.data.adapters.ListArticlesAdapter
 import com.mbds.newsletter.data.adapters.ListArticlesHandler
+import com.mbds.newsletter.data.adapters.ListHeadlinesAdapter
+import com.mbds.newsletter.data.adapters.ListHeadlinesHandler
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _ArticleFragment: Fragment(), ListArticlesHandler {
+class _ArticleFragment: Fragment(), ListHeadlinesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -47,13 +49,9 @@ class _ArticleFragment: Fragment(), ListArticlesHandler {
      */
     override fun getArticles() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val articles = ArticleRepository.getInstance().getArticles()
+            val articles = ArticleRepository.getInstance().getHeadlines()
             bindData(articles)
         }
-    }
-
-    override fun showArticles() {
-
     }
 
     /**
@@ -63,7 +61,7 @@ class _ArticleFragment: Fragment(), ListArticlesHandler {
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListArticlesAdapter(articles, this@_ArticleFragment)
+            val adapter = ListHeadlinesAdapter(articles, this@_ArticleFragment)
             recyclerView.adapter = adapter
         }
     }

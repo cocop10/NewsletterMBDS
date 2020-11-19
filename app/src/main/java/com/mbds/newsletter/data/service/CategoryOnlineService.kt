@@ -65,7 +65,7 @@ class CategoryOnlineService : CategoryService {
         })
     }
     override fun getArticles(category: Category): ArticleQuery {
-        val query = service.category(category).execute().body()
+        val query = service.category(category.toString()).execute().body()
         return query!!
     }
 
