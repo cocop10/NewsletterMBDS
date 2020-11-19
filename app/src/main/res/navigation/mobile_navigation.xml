@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.mbds.newsletter.fragments.HomeFragment"
+        android:name="com.mbds.newsletter.fragments.ArticleListFragment"
         android:label="@string/title_article"
-        tools:layout="@layout/home" />
+        tools:layout="@layout/list_articles_fragment" />
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.mbds.newsletter.fragments.ArticleListFragment"
+        android:name="com.mbds.newsletter.fragments.FavArticleListFragment"
         android:label="@string/title_favorite"
-        tools:layout="@layout/about_us_fragment" />
+        tools:layout="@layout/list_favorite_fragment" />
 
     <fragment
         android:id="@+id/navigation_about_us"

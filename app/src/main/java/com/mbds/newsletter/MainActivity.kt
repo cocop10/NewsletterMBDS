@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mbds.newsletter.fragments.HomeFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.mbds.newsletter.fragments.ArticleListFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar

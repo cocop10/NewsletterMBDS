@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import java.util.*
 
 class FavDB(context: Context?) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DB_VERSION) {
@@ -29,22 +30,27 @@ class FavDB(context: Context?) :
 
     // insert data into database
     fun insertIntoTheDatabase(
-        item_title: String,
-        item_image: Int,
         id: String?,
-        fav_status: String
+        title: String,
+        description: String,
+        author: String,
+        urlToImage: String,
+        favorite: String
+
     ) {
         val db: SQLiteDatabase
         db = this.writableDatabase
         val cv = ContentValues()
-        cv.put(ITEM_TITLE, item_title)
-        cv.put(ITEM_IMAGE, item_image)
+        cv.put(ARTICLE_TITLE, title)
+        cv.put(ARTICLE_DESCRIPTION, description)
+        cv.put(ARTICLE_AUTHOR, author)
+        cv.put(ARTICLE_IMAGE, urlToImage)
         cv.put(KEY_ID, id)
-        cv.put(FAVORITE_STATUS, fav_status)
+        cv.put(FAVORITE_STATUS, favorite)
         db.insert(TABLE_NAME, null, cv)
         Log.d(
             "FavDB Status",
-            "$item_title, favstatus - $fav_status - . $cv"
+            "$title, favstatus - $favorite - . $cv"
         )
     }
 
@@ -75,17 +81,18 @@ class FavDB(context: Context?) :
 
     companion object {
         private const val DB_VERSION = 1
-        private const val DATABASE_NAME = "CoffeeDB"
+        private const val DATABASE_NAME = "ArticleDB"
         private const val TABLE_NAME = "favoriteTable"
         var KEY_ID = "id"
-        var ITEM_TITLE = "itemTitle"
-        var ITEM_IMAGE = "itemImage"
+        var ARTICLE_TITLE = "articleTitle"
+        var ARTICLE_DESCRIPTION = "articleDescription"
+        var ARTICLE_AUTHOR = "articleDescription"
+        var ARTICLE_IMAGE = "articleImage"
         var FAVORITE_STATUS = "fStatus"
 
-        // dont forget write this spaces
         private val CREATE_TABLE =
             ("CREATE TABLE " + TABLE_NAME + "("
-                    + KEY_ID + " TEXT," + ITEM_TITLE + " TEXT,"
-                    + ITEM_IMAGE + " TEXT," + FAVORITE_STATUS + " TEXT)")
+                    + KEY_ID + " TEXT," + ARTICLE_TITLE + " TEXT," + ARTICLE_DESCRIPTION + " TEXT," + ARTICLE_AUTHOR + " TEXT,"
+                    + ARTICLE_IMAGE + " TEXT," + FAVORITE_STATUS + " TEXT)")
     }
 }
