@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.mbds.newsletter.fragments.ArticleListFragment
+import com.mbds.newsletter.fragments.MainFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar
@@ -15,7 +16,8 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        showFragment(ArticleListFragment())
+        showFragment(MainFragment())
+//        showFragment(ArticleListFragment())
     }
 
     override fun showFragment(fragment: Fragment) {
@@ -27,5 +29,12 @@ class MainActivity : AppCompatActivity(), NavigationListener {
 
     override fun updateTitle(title: Int) {
         toolbar.setTitle(title)
+    }
+
+    override fun addChildFragment(fragment: Fragment, frameId: Int) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(frameId, fragment)
+            addToBackStack(null)
+        }.commit()
     }
 }

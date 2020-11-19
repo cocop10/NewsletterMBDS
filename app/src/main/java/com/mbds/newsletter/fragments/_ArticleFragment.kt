@@ -6,21 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.ArticleRepository
 import com.mbds.newsletter.data.adapters.ListArticlesAdapter
 import com.mbds.newsletter.data.adapters.ListArticlesHandler
-import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ArticleListFragment : Fragment(), ListArticlesHandler {
+class _ArticleFragment: Fragment(), ListArticlesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -66,7 +63,7 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListArticlesAdapter(articles, this@ArticleListFragment)
+            val adapter = ListArticlesAdapter(articles, this@_ArticleFragment)
             recyclerView.adapter = adapter
         }
     }

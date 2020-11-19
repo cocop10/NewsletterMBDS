@@ -1,6 +1,6 @@
 package com.mbds.newsletter.data.adapters
 
-interface ListArticlesHandler {
+interface ListSourcesHandler {
+    fun getSources()
     fun getArticles()
-    fun showArticles()
 }
