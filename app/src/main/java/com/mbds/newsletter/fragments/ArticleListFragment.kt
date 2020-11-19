@@ -55,6 +55,10 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
         }
     }
 
+    override fun showArticles() {
+
+    }
+
     /**
      * Rempli le recyclerview avec les données récupérées dans le web service
      * Cette action doit s'effectuer sur le thread principale

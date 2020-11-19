@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListArticlesAdapter(
-    items: ArticleQuery, private val handler: ArticleListFragment
+    items: ArticleQuery, private val handler: ListArticlesHandler
 ) : RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
     private val mArticles: ArticleQuery = items
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -78,5 +78,9 @@ class ListArticlesAdapter(
             mArticleDate = view.findViewById(R.id.item_list_date)
             mFavoriteButton = view.findViewById(R.id.item_list_favorite_button)
         }
+    }
+
+    private fun showArticle() {
+
     }
 }

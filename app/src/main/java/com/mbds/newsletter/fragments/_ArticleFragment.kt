@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
-import com.mbds.newsletter.data.SourceRepository
-import com.mbds.newsletter.data.adapters.ListSourcesAdapter
-import com.mbds.newsletter.data.adapters.ListSourcesHandler
-import com.mbds.newsletter.models.SourceQuery
+import com.mbds.newsletter.data.ArticleRepository
+import com.mbds.newsletter.data.adapters.ListArticlesAdapter
+import com.mbds.newsletter.data.adapters.ListArticlesHandler
+import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _SourceFragment: Fragment(), ListSourcesHandler {
+class _ArticleFragment: Fragment(), ListArticlesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -27,15 +27,15 @@ class _SourceFragment: Fragment(), ListSourcesHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.list_chips_fragment, container, false)
-        recyclerView = view.findViewById(R.id.chips_list)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val view = inflater.inflate(R.layout.list_articles_fragment, container, false)
+        recyclerView = view.findViewById(R.id.article_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getSources()
+        getArticles()
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.articles_list)
@@ -43,17 +43,17 @@ class _SourceFragment: Fragment(), ListSourcesHandler {
     }
 
     /**
-     * Récupère la liste des éditeurs dans un thread secondaire
+     * Récupère la liste des articles dans un thread secondaire
      */
-    override fun getSources() {
+    override fun getArticles() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val sources = SourceRepository.getInstance().getSources()
-            bindData(sources)
+            val articles = ArticleRepository.getInstance().getArticles()
+            bindData(articles)
         }
     }
 
-    override fun getArticles() {
-        TODO("Not yet implemented")
+    override fun showArticles() {
+
     }
 
     /**
@@ -61,9 +61,9 @@ class _SourceFragment: Fragment(), ListSourcesHandler {
      * Cette action doit s'effectuer sur le thread principale
      * Car on ne peut mas modifier les éléments de vue dans un thread secondaire
      */
-    private fun bindData(sources: SourceQuery) {
+    private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListSourcesAdapter(sources, this@_SourceFragment)
+            val adapter = ListArticlesAdapter(articles, this@_ArticleFragment)
             recyclerView.adapter = adapter
         }
     }

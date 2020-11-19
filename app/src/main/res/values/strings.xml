@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Newsletter</string>
 
+    <string name="top_headlines">Articles à la une</string>
+
     <string name="articles_list">Liste des articles</string>
     <string name="articles">Articles</string>
     <string name="articles_avatar">Illustration de l\'article</string>

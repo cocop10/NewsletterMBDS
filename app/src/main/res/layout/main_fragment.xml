@@ -3,31 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/top_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/top_headlines"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <FrameLayout
+                android:id="@+id/list_articles_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="400dp">
+
+            </FrameLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="#CCCCCC" />
 
             <TextView
                 android:id="@+id/sources_label"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/sources" />
+                android:text="@string/sources"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/sourcesGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 app:singleLine="true">
 
                 <FrameLayout
@@ -42,13 +64,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:text="@string/categories" />
+                android:text="@string/categories"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/categoriesGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 app:singleLine="true">
 
                 <FrameLayout
@@ -63,13 +85,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:text="@string/countries" />
+                android:text="@string/countries"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/countriesGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 app:singleLine="true">
 
                 <FrameLayout
