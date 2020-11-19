@@ -30,7 +30,7 @@ class ListFavArticlesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favArticle: FavArticle = favArticleList[position]
-        val context = holder.itemView.context
+        //val context = holder.itemView.context
 
 
         holder.mFavArticleName.text = favArticle.title
@@ -44,14 +44,13 @@ class ListFavArticlesAdapter(
         //val dateString = sdfOut.format(date)
 
 
-        Glide.with(context)
-            .load(favArticle.urlToImage)
-            .placeholder(R.drawable.ic_baseline_image_24)
-            .error(R.drawable.ic_baseline_image_24)
-            .skipMemoryCache(false)
-            .into(holder.mFavArticleAvatar)
+        //Glide.with(context)
+        //    .load(favArticle.urlToImage)
+        //   .placeholder(R.drawable.ic_baseline_image_24)
+        //    .error(R.drawable.ic_baseline_image_24)
+        //    .skipMemoryCache(false)
+        //    .into(holder.mFavArticleAvatar)
 
-        //remove from fav after click
 
         //remove from fav after click
         holder.mFavFavoriteButton.setOnClickListener(View.OnClickListener {
@@ -76,11 +75,11 @@ class ListFavArticlesAdapter(
 
         init {
             // Enable click on item
-            mFavArticleAvatar = view.findViewById(R.id.item_list_avatar)
-            mFavArticleName = view.findViewById(R.id.item_list_name)
-            mFavArticleDescription = view.findViewById(R.id.item_list_description)
-            mFavArticleAuthor = view.findViewById(R.id.item_list_author)
-            mFavFavoriteButton = view.findViewById(R.id.item_list_favorite_button)
+            mFavArticleAvatar = view.findViewById(R.id.fav_item_list_avatar)
+            mFavArticleName = view.findViewById(R.id.fav_item_list_name)
+            mFavArticleDescription = view.findViewById(R.id.fav_item_list_description)
+            mFavArticleAuthor = view.findViewById(R.id.fav_item_list_author)
+            mFavFavoriteButton = view.findViewById(R.id.fav_item_list_favorite_button)
         }
     }
 

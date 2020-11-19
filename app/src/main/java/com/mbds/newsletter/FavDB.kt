@@ -17,11 +17,11 @@ class FavDB(context: Context?) :
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, i: Int, i1: Int) {}
 
     // create empty table
-    fun insertEmpty() {
+    fun insertEmpty(nombre: Int) {
         val db = this.writableDatabase
         val cv = ContentValues()
         // enter your value
-        for (x in 1..10) {
+        for (x in 1..nombre) {
             cv.put(KEY_ID, x)
             cv.put(FAVORITE_STATUS, "0")
             db.insert(TABLE_NAME, null, cv)

@@ -16,8 +16,9 @@ import com.mbds.newsletter.data.adapters.ListFavArticlesAdapter
 import com.mbds.newsletter.models.FavArticle
 import java.util.*
 
-class FavArticleListFragment: Fragment() {
+class FavArticleListFragment: Fragment()  {
     private lateinit var recyclerView: RecyclerView
+
     private lateinit var favDB: FavDB
     private var favArticleList: MutableList<FavArticle> = ArrayList<FavArticle>()
     private lateinit var favAdapter: ListFavArticlesAdapter
@@ -31,7 +32,7 @@ class FavArticleListFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.list_favorite_fragment, container, false)
 
-        favDB = FavDB(activity)
+
 
         recyclerView = view.findViewById(R.id.article_fav_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -41,6 +42,8 @@ class FavArticleListFragment: Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        favDB = FavDB(activity)
         loadData(requireContext())
         return view
     }

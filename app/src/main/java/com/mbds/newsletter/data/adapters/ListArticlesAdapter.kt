@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ListArticlesAdapter(
-    items: ArticleQuery, private val handler: ArticleListFragment
+    items: ArticleQuery, handler: ArticleListFragment
 ) : RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
 
     private val mArticles: ArticleQuery = items
@@ -34,8 +34,11 @@ class ListArticlesAdapter(
         //create table on first
         val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val firstStart = prefs.getBoolean("firstStart", true)
+
+        var nb = itemCount
+
         if (firstStart) {
-            createTableOnFirstStart()
+            createTableOnFirstStart(nb)
         }
 
         val view: View = LayoutInflater.from(parent.context)
@@ -48,7 +51,6 @@ class ListArticlesAdapter(
         val context = holder.itemView.context
 
         readCursorData(article, holder)
-        article.id = position.toString()
 
         //Conversion de la date
         val sdfOut = SimpleDateFormat("dd-MM-yyyy")
@@ -135,8 +137,8 @@ class ListArticlesAdapter(
         }
     }
 
-    private fun createTableOnFirstStart() {
-        favDB.insertEmpty()
+    private fun createTableOnFirstStart(nombre: Int) {
+        favDB.insertEmpty(nombre)
         val prefs =
             context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()

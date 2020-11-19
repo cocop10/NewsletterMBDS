@@ -3,7 +3,7 @@ package com.mbds.newsletter.models
 import java.util.*
 
 data class Article (
-    var id: String = "0",
+    var id: String,
     val title: String,
     val description: String,
     val author: String,
