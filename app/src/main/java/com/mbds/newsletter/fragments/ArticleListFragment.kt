@@ -66,6 +66,12 @@ class ArticleListFragment(query: String, nameFragment: String) : Fragment(), Lis
         }
     }
 
+    override fun showDetails(article: Article) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleFragment(article))
+        }
+    }
+
     /**
      * Rempli le recyclerview avec les données récupérées dans le web service
      * Cette action doit s'effectuer sur le thread principale

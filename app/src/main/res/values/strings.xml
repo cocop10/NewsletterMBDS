@@ -1,27 +1,28 @@
 <resources>
     <string name="app_name">Newsletter</string>
-
-    <string name="top_headlines">Articles à la une</string>
-
-    <string name="articles_list">Liste des articles</string>
-    <string name="favorite_list">Liste des favoris</string>
+    <string name="top_headlines">Top headlines</string>
+    <string name="articles_list">Articles list</string>
     <string name="articles">Articles</string>
-    <string name="articles_avatar">Illustration de l\'article</string>
-    <string name="articles_favorite">Bouton de mise en favori de l\'article</string>
-
-    <string name="sources">Editeurs</string>
-    <string name="sources_list">Liste des éditeurs</string>
-    <string name="sources_item">Editeur</string>
-
-    <string name="categories">Catégories</string>
-    <string name="categories_list">Liste des catégories</string>
-    <string name="categories_item">Catégorie</string>
-
-    <string name="countries">Pays</string>
-    <string name="countries_list">Liste des pays</string>
-    <string name="countries_item">Pays</string>
-
+    <string name="articles_avatar">Article illustration</string>
+    <string name="articles_favorite">Article favorite button</string>
+    <string name="sources">Sources</string>
+    <string name="sources_list">Sources list</string>
+    <string name="sources_item">Source</string>
+    <string name="categories">Categories</string>
+    <string name="categories_list">Categories list</string>
+    <string name="categories_item">Category</string>
+    <string name="countries">Countries</string>
+    <string name="countries_list">Countries list</string>
+    <string name="countries_item">Country</string>
     <string name="chips_item">Chip button</string>
+    <string name="article_title">Article title</string>
+    <string name="article_description">Article description</string>
+    <string name="article_author">Article author</string>
+    <string name="article_publishedAt">Article published at</string>
+    <string name="article_urlToImage">Article URL to image</string>
+    <string name="article_content">Article content</string>
+    <string name="article_favorite">Article favorite</string>
+    <string name="article">Article</string>
 
 
     <!-- about_us.xml -->

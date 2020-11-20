@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mbds.newsletter.FavDB
 import com.mbds.newsletter.R
+import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import java.text.SimpleDateFormat
@@ -45,14 +46,6 @@ class ListArticlesAdapter(
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
         holder.mArticleDate.text = dateString
-
-        // Initialisation button fav
-        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-        else holder.mFavoriteButton.setImageResource(
-            R.drawable.ic_favorite_red_24dp
-        )
-
-
 
         Glide.with(context)
             .load(article.urlToImage)
@@ -102,6 +95,7 @@ class ListArticlesAdapter(
         val mArticleAuthor: TextView
         val mArticleDate: TextView
         val mFavoriteButton: ImageButton
+        val mBackground: ConstraintLayout
 
         init {
             // Enable click on item
@@ -111,6 +105,7 @@ class ListArticlesAdapter(
             mArticleAuthor = view.findViewById(R.id.item_list_author)
             mArticleDate = view.findViewById(R.id.item_list_date)
             mFavoriteButton = view.findViewById(R.id.item_list_favorite_button)
+            mBackground = view.findViewById(R.id.background)
         }
     }
 

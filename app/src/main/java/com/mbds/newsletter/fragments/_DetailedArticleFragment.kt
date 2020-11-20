@@ -10,17 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
-import com.mbds.newsletter.data.ArticleRepository
-import com.mbds.newsletter.data.adapters.ListArticlesAdapter
-import com.mbds.newsletter.data.adapters.ListArticlesHandler
-import com.mbds.newsletter.data.adapters.ListHeadlinesAdapter
-import com.mbds.newsletter.data.adapters.ListHeadlinesHandler
+import com.mbds.newsletter.data.adapters.ArticleAdapter
+import com.mbds.newsletter.data.adapters.ArticleHandler
+import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _ArticleFragment: Fragment(), ListHeadlinesHandler {
+class _DetailedArticleFragment(article: Article): Fragment(), ArticleHandler {
     private lateinit var recyclerView: RecyclerView
+    private val article = article
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
      */
@@ -37,20 +36,10 @@ class _ArticleFragment: Fragment(), ListHeadlinesHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getArticles()
+        bindData(article)
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.articles_list)
-        }
-    }
-
-    /**
-     * Récupère la liste des articles dans un thread secondaire
-     */
-    override fun getArticles() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val articles = ArticleRepository.getInstance().getHeadlines()
-            bindData(articles)
         }
     }
 
@@ -59,9 +48,9 @@ class _ArticleFragment: Fragment(), ListHeadlinesHandler {
      * Cette action doit s'effectuer sur le thread principale
      * Car on ne peut mas modifier les éléments de vue dans un thread secondaire
      */
-    private fun bindData(articles: ArticleQuery) {
+    private fun bindData(article: Article) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListArticlesAdapter(articles, this@_ArticleFragment)
+            val adapter = ArticleAdapter(article, this@_DetailedArticleFragment)
             recyclerView.adapter = adapter
         }
     }

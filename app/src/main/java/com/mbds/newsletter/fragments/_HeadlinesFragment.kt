@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
-import com.mbds.newsletter.data.adapters.ListCountriesAdapter
-import com.mbds.newsletter.data.adapters.ListSourcesHandler
+import com.mbds.newsletter.data.ArticleRepository
+import com.mbds.newsletter.data.adapters.ListHeadlinesAdapter
+import com.mbds.newsletter.data.adapters.ListHeadlinesHandler
 import com.mbds.newsletter.models.Article
+import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _CountryFragment: Fragment(), ListSourcesHandler {
+class _HeadlinesFragment: Fragment(), ListHeadlinesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -26,27 +28,30 @@ class _CountryFragment: Fragment(), ListSourcesHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.list_chips_fragment, container, false)
-        recyclerView = view.findViewById(R.id.chips_list)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val view = inflater.inflate(R.layout.list_articles_fragment, container, false)
+        recyclerView = view.findViewById(R.id.article_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getSources()
+        getArticles()
     }
 
     /**
-     * Appelle la fonction bindData
+     * Récupère la liste des articles dans un thread secondaire
      */
-    override fun getSources() {
-        bindData()
+    override fun getArticles() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val articles = ArticleRepository.getInstance().getHeadlines()
+            bindData(articles)
+        }
     }
 
-    override fun showArticles(query: String) {
+    override fun showDetails(article: Article) {
         (activity as? NavigationListener)?.let {
-            it.showFragment(ArticleListFragment(query, "_CountryFragment"))
+            it.showFragment(ArticleFragment(article))
         }
     }
 
@@ -55,11 +60,10 @@ class _CountryFragment: Fragment(), ListSourcesHandler {
      * Cette action doit s'effectuer sur le thread principale
      * Car on ne peut mas modifier les éléments de vue dans un thread secondaire
      */
-    private fun bindData() {
+    private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListCountriesAdapter(this@_CountryFragment)
+            val adapter = ListHeadlinesAdapter(articles, this@_HeadlinesFragment)
             recyclerView.adapter = adapter
         }
     }
-
 }

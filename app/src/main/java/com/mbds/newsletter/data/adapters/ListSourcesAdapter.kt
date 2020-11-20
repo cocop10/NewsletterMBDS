@@ -31,7 +31,7 @@ class ListSourcesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val source: Source = mSources.sources[position]
 
-        holder.mSourcename.text = source.name
+        holder.mSourcename.text = source.id
 
         holder.mSourcename.setOnClickListener {
             handler.showArticles(holder.mSourcename.text as String)
