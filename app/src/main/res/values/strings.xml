@@ -4,6 +4,7 @@
     <string name="top_headlines">Articles à la une</string>
 
     <string name="articles_list">Liste des articles</string>
+    <string name="favorite_list">Liste des favoris</string>
     <string name="articles">Articles</string>
     <string name="articles_avatar">Illustration de l\'article</string>
     <string name="articles_favorite">Bouton de mise en favori de l\'article</string>

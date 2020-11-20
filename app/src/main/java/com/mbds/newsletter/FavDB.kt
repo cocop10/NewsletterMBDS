@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import java.util.*
 
 class FavDB(context: Context?) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DB_VERSION) {
@@ -16,17 +15,6 @@ class FavDB(context: Context?) :
 
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, i: Int, i1: Int) {}
 
-    // create empty table
-    fun insertEmpty(nombre: Int) {
-        val db = this.writableDatabase
-        val cv = ContentValues()
-        // enter your value
-        for (x in 1..nombre) {
-            cv.put(KEY_ID, x)
-            cv.put(FAVORITE_STATUS, "0")
-            db.insert(TABLE_NAME, null, cv)
-        }
-    }
 
     // insert data into database
     fun insertIntoTheDatabase(
@@ -36,6 +24,7 @@ class FavDB(context: Context?) :
         author: String,
         urlToImage: String,
         favorite: String
+
 
     ) {
         val db: SQLiteDatabase
@@ -86,9 +75,10 @@ class FavDB(context: Context?) :
         var KEY_ID = "id"
         var ARTICLE_TITLE = "articleTitle"
         var ARTICLE_DESCRIPTION = "articleDescription"
-        var ARTICLE_AUTHOR = "articleDescription"
+        var ARTICLE_AUTHOR = "articleAuthor"
         var ARTICLE_IMAGE = "articleImage"
         var FAVORITE_STATUS = "fStatus"
+
 
         private val CREATE_TABLE =
             ("CREATE TABLE " + TABLE_NAME + "("

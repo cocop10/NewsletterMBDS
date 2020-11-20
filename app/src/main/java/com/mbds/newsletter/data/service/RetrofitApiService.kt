@@ -15,13 +15,13 @@ interface RetrofitApiService {
     @GET("/v2/sources")
     fun sources(): Call<SourceQuery>
 
-    @GET("v2/top-headlines")
+    @GET("/v2/top-headlines")
     fun source(@Query("sources") source: String): Call<ArticleQuery>
 
-    @GET("v2/top-headlines")
+    @GET("/v2/top-headlines")
     fun category(@Query("category") category: Category): Call<ArticleQuery>
 
-    @GET("v2/top-headlines")
+    @GET("/v2/top-headlines")
     fun country(@Query("country") country: Country): Call<ArticleQuery>
 
 }

@@ -58,10 +58,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    //base de donnees local
-    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
-    //afficher des infos a l'ecran
-    implementation "org.jetbrains.anko:anko-common:$anko_version"
+
     // Utiliser pour le fragment container et la nav bar bottom
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
