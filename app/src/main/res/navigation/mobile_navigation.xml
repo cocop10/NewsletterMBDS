@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.mbds.newsletter.fragments.MainFragment"
         android:label="@string/title_article"
-        tools:layout="@layout/list_articles_fragment" />
+        tools:layout="@layout/main_fragment" />
 
     <fragment
         android:id="@+id/navigation_favorite"

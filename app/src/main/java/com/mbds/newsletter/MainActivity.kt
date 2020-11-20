@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         val navView = findViewById<BottomNavigationView>(R.id.nav_view)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_about_us)
         val navController: NavController =

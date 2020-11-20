@@ -1,9 +1,11 @@
 package com.mbds.newsletter.models
 
+
 import java.util.*
 
+
 data class Article (
-    var id: String,
+    val id: String = UUID.randomUUID().toString(),
     val title: String,
     val description: String,
     val author: String,

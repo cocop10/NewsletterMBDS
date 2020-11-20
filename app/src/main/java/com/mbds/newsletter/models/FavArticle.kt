@@ -1,6 +1,5 @@
 package com.mbds.newsletter.models
 
-import java.util.*
 
 data class FavArticle (
     var id: String,

@@ -79,7 +79,7 @@ class FavArticleListFragment: Fragment()  {
 
 
         (activity as? NavigationListener)?.let {
-            it.updateTitle(R.string.favorite_list)
+            it.updateTitle(R.string.article_favorite_list)
         }
     }
 }

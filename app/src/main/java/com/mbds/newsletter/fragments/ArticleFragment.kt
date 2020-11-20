@@ -49,7 +49,7 @@ class ArticleFragment(article: Article) : Fragment(), ArticleHandler {
      */
     private fun bindData(article: Article) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ArticleAdapter(article, this@ArticleFragment)
+            val adapter = ArticleAdapter(article, this@ArticleFragment,requireContext())
             recyclerView.adapter = adapter
         }
     }

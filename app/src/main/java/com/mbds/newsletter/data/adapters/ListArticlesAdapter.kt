@@ -1,5 +1,7 @@
 package com.mbds.newsletter.data.adapters
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.mbds.newsletter.FavDB
 import com.mbds.newsletter.R
 import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.models.Article
@@ -22,6 +25,14 @@ class ListArticlesAdapter(
     private val mArticles: ArticleQuery = items
     private lateinit var favDB: FavDB
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        favDB = FavDB(context);
+        //create table on first
+        val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        val firstStart = prefs.getBoolean("firstStart", true)
+
+        if (firstStart) {
+            createTableOnFirstStart()
+        }
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.article_item, parent, false)
         return ViewHolder(view)
@@ -31,11 +42,11 @@ class ListArticlesAdapter(
         val article: Article = mArticles.articles[position]
         val context = holder.itemView.context
 
-
         article.favorite = "0"
-        article.id = position.toString()
+        //article.id = position.toString()
 
         readCursorData(article, holder)
+
         //Conversion de la date
         val sdfOut = SimpleDateFormat("dd-MM-yyyy")
         val date: Date = article.publishedAt
@@ -46,6 +57,12 @@ class ListArticlesAdapter(
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
         holder.mArticleDate.text = dateString
+
+        // Initialisation button fav
+        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        else holder.mFavoriteButton.setImageResource(
+            R.drawable.ic_favorite_red_24dp
+        )
 
         Glide.with(context)
             .load(article.urlToImage)
@@ -60,10 +77,6 @@ class ListArticlesAdapter(
 
             if (article.favorite == "0") {
                 article.favorite = "1"
-
-
-
-
                 favDB.insertIntoTheDatabase(
                     article.id,
                     article.title,
@@ -73,7 +86,6 @@ class ListArticlesAdapter(
                     //dateString,
                     article.favorite
                 )
-
                 holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
             } else {
                 article.favorite = "0"
@@ -109,8 +121,7 @@ class ListArticlesAdapter(
         }
     }
 
-    private fun createTableOnFirstStart(nombre: Int) {
-        //favDB.insertEmpty(nombre)
+    private fun createTableOnFirstStart() {
         val prefs =
             context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()
