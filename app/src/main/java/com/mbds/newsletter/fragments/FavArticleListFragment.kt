@@ -33,7 +33,6 @@ class FavArticleListFragment: Fragment()  {
         val view = inflater.inflate(R.layout.list_favorite_fragment, container, false)
 
 
-
         recyclerView = view.findViewById(R.id.article_fav_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(
@@ -63,7 +62,6 @@ class FavArticleListFragment: Fragment()  {
                 val author = cursor.getString(cursor.getColumnIndex(FavDB.ARTICLE_AUTHOR))
                 val id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID))
                 val urlToImage = cursor.getString(cursor.getColumnIndex(FavDB.ARTICLE_IMAGE))
-
                 val favArticle = FavArticle(id, title, description, author, urlToImage)
                 favArticleList.add(favArticle)
             }
