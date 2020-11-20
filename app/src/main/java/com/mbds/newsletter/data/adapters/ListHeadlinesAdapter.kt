@@ -15,6 +15,7 @@ import com.mbds.newsletter.FavDB
 import com.mbds.newsletter.R
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,13 +30,26 @@ class ListHeadlinesAdapter (
         //create table on first
         val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val firstStart = prefs.getBoolean("firstStart", true)
-
         if (firstStart) {
             createTableOnFirstStart()
         }
+
+        //create Id
+        val prefs_ListArticle: SharedPreferences = context.getSharedPreferences("prefs_ListArticle", Context.MODE_PRIVATE)
+        val firstStart_ListArticle = prefs_ListArticle.getBoolean("firstStart_ListArticle", true)
+        if (firstStart_ListArticle) {
+            getArticleId()
+        }
+
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.article_item, parent, false)
         return ViewHolder(view)
+    }
+
+    private fun getArticleId() {
+        mArticles.articles.forEach{
+            it.id = (0..1000000).random().toString()
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -80,17 +94,21 @@ class ListHeadlinesAdapter (
         holder.mFavoriteButton.setOnClickListener(View.OnClickListener {
 
             if (article.favorite == "0") {
-                article.favorite = "1"
-                favDB.insertIntoTheDatabase(
-                    article.id,
-                    article.title,
-                    article.description,
-                    article.author,
-                    article.urlToImage,
-                    //dateString,
-                    article.favorite
-                )
-                holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
+                try {
+                    article.favorite = "1"
+                    favDB.insertIntoTheDatabase(
+                        article.id,
+                        article.title,
+                        article.description,
+                        article.author,
+                        article.urlToImage,
+                        //dateString,
+                        article.favorite
+                    )
+                    holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
+                } finally {
+                }
+
             } else {
                 article.favorite = "0"
                 favDB.remove_fav(article.id)

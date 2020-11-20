@@ -29,13 +29,27 @@ class ListArticlesAdapter(
         //create table on first
         val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val firstStart = prefs.getBoolean("firstStart", true)
-
         if (firstStart) {
             createTableOnFirstStart()
         }
+
+        //create Id
+        val prefs_ListArticle: SharedPreferences = context.getSharedPreferences("prefs_ListArticle", Context.MODE_PRIVATE)
+        val firstStart_ListArticle = prefs_ListArticle.getBoolean("firstStart_ListArticle", true)
+        if (firstStart_ListArticle) {
+            getArticleId()
+        }
+
+
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.article_item, parent, false)
         return ViewHolder(view)
+    }
+
+    private fun getArticleId() {
+        mArticles.articles.forEach{
+            it.id = (0..1000000).random().toString()
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

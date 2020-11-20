@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        //showFragment(ArticleListFragment())
-        //showFragment(HomeFragment())
 
         val navView = findViewById<BottomNavigationView>(R.id.nav_view)
         // Passing each menu ID as a set of Ids because each
@@ -33,9 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationListener {
             Navigation.findNavController(this, R.id.fragment_container)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration.build())
         NavigationUI.setupWithNavController(navView, navController)
-
-
-
 
     }
 
