@@ -11,15 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.ArticleRepository
-import com.mbds.newsletter.data.adapters.ListArticlesAdapter
-import com.mbds.newsletter.data.adapters.ListArticlesHandler
 import com.mbds.newsletter.data.adapters.ListHeadlinesAdapter
 import com.mbds.newsletter.data.adapters.ListHeadlinesHandler
+import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class _ArticleFragment: Fragment(), ListHeadlinesHandler {
+class _HeadlinesFragment: Fragment(), ListHeadlinesHandler {
     private lateinit var recyclerView: RecyclerView
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -50,6 +49,12 @@ class _ArticleFragment: Fragment(), ListHeadlinesHandler {
         }
     }
 
+    override fun showDetails(article: Article) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleFragment(article))
+        }
+    }
+
     /**
      * Rempli le recyclerview avec les données récupérées dans le web service
      * Cette action doit s'effectuer sur le thread principale
@@ -57,7 +62,7 @@ class _ArticleFragment: Fragment(), ListHeadlinesHandler {
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListHeadlinesAdapter(articles, this@_ArticleFragment)
+            val adapter = ListHeadlinesAdapter(articles, this@_HeadlinesFragment)
             recyclerView.adapter = adapter
         }
     }

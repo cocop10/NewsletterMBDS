@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.R
@@ -47,8 +48,8 @@ class ListArticlesAdapter(
             .skipMemoryCache(false)
             .into(holder.mArticleAvatar)
 
-        holder.mFavoriteButton.setOnClickListener {
-
+        holder.mBackground.setOnClickListener {
+            handler.showDetails(article)
         }
 
         if (!article.favorite) holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24) else holder.mFavoriteButton.setImageResource(
@@ -68,6 +69,7 @@ class ListArticlesAdapter(
         val mArticleAuthor: TextView
         val mArticleDate: TextView
         val mFavoriteButton: ImageButton
+        val mBackground: ConstraintLayout
 
         init {
             // Enable click on item
@@ -77,6 +79,7 @@ class ListArticlesAdapter(
             mArticleAuthor = view.findViewById(R.id.item_list_author)
             mArticleDate = view.findViewById(R.id.item_list_date)
             mFavoriteButton = view.findViewById(R.id.item_list_favorite_button)
+            mBackground = view.findViewById(R.id.background)
         }
     }
 }

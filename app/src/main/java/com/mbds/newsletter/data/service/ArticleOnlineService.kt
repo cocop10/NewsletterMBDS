@@ -1,13 +1,14 @@
 package com.mbds.newsletter.data.service
 
+import android.content.res.Resources
 import com.mbds.newsletter.models.ArticleQuery
-import com.mbds.newsletter.models.Country
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class ArticleOnlineService : ArticleService {
     private val service: RetrofitApiService
@@ -86,7 +87,7 @@ class ArticleOnlineService : ArticleService {
     }
 
     override fun getHeadlines(): ArticleQuery {
-        val query = service.country("fr").execute().body()
+        val query = service.country(Locale.getDefault().getCountry()).execute().body() //Affiche les articles à la une selon la langue de l'appareil
         return query!!
     }
 
