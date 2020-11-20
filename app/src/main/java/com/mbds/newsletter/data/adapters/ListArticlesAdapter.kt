@@ -1,7 +1,5 @@
 package com.mbds.newsletter.data.adapters
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,25 +18,9 @@ import java.util.*
 class ListArticlesAdapter(
     items: ArticleQuery, private val handler: ListArticlesHandler, val context: Context
 ) : RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
-
     private val mArticles: ArticleQuery = items
-
     private lateinit var favDB: FavDB
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        favDB = FavDB(context);
-        //create table on first
-        val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        val firstStart = prefs.getBoolean("firstStart", true)
-
-        var nb = itemCount
-
-        if (firstStart) {
-            createTableOnFirstStart(nb)
-        }
-
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.article_item, parent, false)
         return ViewHolder(view)
@@ -114,7 +96,6 @@ class ListArticlesAdapter(
 
     class ViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
-
         val mArticleAvatar: ImageView
         val mArticleName: TextView
         val mArticleDescription: TextView

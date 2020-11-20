@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.ArticleRepository
@@ -22,13 +19,11 @@ import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class ArticleListFragment : Fragment(), ListArticlesHandler {
+class ArticleListFragment(query: String, nameFragment: String) : Fragment(), ListArticlesHandler {
     private lateinit var recyclerView: RecyclerView
-    //private var errorSnackBar: Snackbar? = null
-
-
+    private val query = query
+    private val nameFragment = nameFragment
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
      */
@@ -45,7 +40,7 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getArticles()
+        getArticles(this.query, this.nameFragment)
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.articles_list)
@@ -55,22 +50,20 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
     /**
      * Récupère la liste des articles dans un thread secondaire
      */
-    override fun getArticles() {
+    override fun getArticles(subject: String, fragment: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val articles = ArticleRepository.getInstance().getArticles()
-
-//            if (articles != null) {
-//                bindData(articles)
-//            } else {
-//                displayError(R.string.request_error)
-//            }
-
+            val articles: ArticleQuery
+                    when (fragment) {
+                        "_ArticleFragment" -> articles = ArticleRepository.getInstance().getArticles(subject)
+                        "_CategoryFragment" -> articles = ArticleRepository.getInstance().getCategoryArticles(subject)
+                        "_CountryFragment" -> articles = ArticleRepository.getInstance().getCountryArticles(subject)
+                        "_SourceFragment" -> articles = ArticleRepository.getInstance().getSourceArticles(subject)
+                        else -> {
+                            articles = ArticleRepository.getInstance().getCountryArticles(subject)
+                        }
+                    }
             bindData(articles)
         }
-    }
-
-    override fun showArticles() {
-
     }
 
     /**
@@ -84,6 +77,4 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
             recyclerView.adapter = adapter
         }
     }
-
-
 }

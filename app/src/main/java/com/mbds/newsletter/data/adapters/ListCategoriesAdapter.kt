@@ -17,7 +17,7 @@ import com.mbds.newsletter.models.Category
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ListCategoriesAdapter(holder: _CategoryFragment) : RecyclerView.Adapter<ListCategoriesAdapter.ViewHolder>() {
+class ListCategoriesAdapter(private val handler: _CategoryFragment) : RecyclerView.Adapter<ListCategoriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.chip_item, parent, false)
@@ -32,6 +32,10 @@ class ListCategoriesAdapter(holder: _CategoryFragment) : RecyclerView.Adapter<Li
         val category: String = list[position]
 
         holder.mCategoryname.text = category
+
+        holder.mCategoryname.setOnClickListener {
+            handler.showArticles(holder.mCategoryname.text as String)
+        }
     }
 
     override fun getItemCount(): Int {
