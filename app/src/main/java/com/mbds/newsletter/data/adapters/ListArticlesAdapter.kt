@@ -12,24 +12,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.FavDB
 import com.mbds.newsletter.R
-import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ListArticlesAdapter(
-    items: ArticleQuery, handler: ArticleListFragment
+    items: ArticleQuery, private val handler: ListArticlesHandler, val context: Context
 ) : RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
 
     private val mArticles: ArticleQuery = items
-    private var context: Context = handler.requireContext()
+
     private lateinit var favDB: FavDB
 
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         favDB = FavDB(context);
         //create table on first
         val prefs: SharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
@@ -50,8 +48,11 @@ class ListArticlesAdapter(
         val article: Article = mArticles.articles[position]
         val context = holder.itemView.context
 
-        readCursorData(article, holder)
 
+        article.favorite = "0"
+        article.id = position.toString()
+
+        readCursorData(article, holder)
         //Conversion de la date
         val sdfOut = SimpleDateFormat("dd-MM-yyyy")
         val date: Date = article.publishedAt
@@ -62,9 +63,11 @@ class ListArticlesAdapter(
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
         holder.mArticleDate.text = dateString
+
         // Initialisation button fav
-        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24) else holder.mFavoriteButton.setImageResource(
-            R.drawable.ic_baseline_favorite_24
+        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        else holder.mFavoriteButton.setImageResource(
+            R.drawable.ic_favorite_red_24dp
         )
 
 
@@ -76,34 +79,27 @@ class ListArticlesAdapter(
             .skipMemoryCache(false)
             .into(holder.mArticleAvatar)
 
-        holder.mFavoriteButton.setOnClickListener {
-            if (article.favorite == "0"){
-                holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                article.favorite = "1"
-            }
-            else
-            {
-                article.favorite = "0"
-                holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-            }
-        }
-
 
         //add to fav btn
         holder.mFavoriteButton.setOnClickListener(View.OnClickListener {
 
             if (article.favorite == "0") {
                 article.favorite = "1"
+
+
+
+
                 favDB.insertIntoTheDatabase(
                     article.id,
                     article.title,
                     article.description,
                     article.author,
                     article.urlToImage,
+                    //dateString,
                     article.favorite
                 )
 
-                holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
             } else {
                 article.favorite = "0"
                 favDB.remove_fav(article.id)
@@ -138,7 +134,7 @@ class ListArticlesAdapter(
     }
 
     private fun createTableOnFirstStart(nombre: Int) {
-        favDB.insertEmpty(nombre)
+        //favDB.insertEmpty(nombre)
         val prefs =
             context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()
@@ -160,7 +156,7 @@ class ListArticlesAdapter(
 
                 //check fav status
                 if (item_fav_status != null && item_fav_status == "1") {
-                    viewHolder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    viewHolder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
                 } else if (item_fav_status != null && item_fav_status == "0") {
                     viewHolder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 }

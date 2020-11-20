@@ -10,11 +10,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.FavDB
+import com.mbds.newsletter.MainActivity
 import com.mbds.newsletter.R
 import com.mbds.newsletter.models.FavArticle
 
 class ListFavArticlesAdapter(
-    private val context: Context, private val favArticleList: List<FavArticle>
+    private val context: Context, private var favArticleList: MutableList<FavArticle>
 ) : RecyclerView.Adapter<ListFavArticlesAdapter.ViewHolder>() {
 
     private lateinit var favDB: FavDB
@@ -30,7 +31,6 @@ class ListFavArticlesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favArticle: FavArticle = favArticleList[position]
-        //val context = holder.itemView.context
 
 
         holder.mFavArticleName.text = favArticle.title
@@ -38,31 +38,22 @@ class ListFavArticlesAdapter(
         holder.mFavArticleDescription.text = favArticle.description
 
 
-        //Conversion de la date
-        //val sdfOut = SimpleDateFormat("dd-MM-yyyy")
-        //val date: Date = article.publishedAt
-        //val dateString = sdfOut.format(date)
+        Glide.with(context)
+            .load(favArticle.urlToImage)
+            .placeholder(R.drawable.ic_baseline_image_24)
+            .error(R.drawable.ic_baseline_image_24)
+            .skipMemoryCache(false)
+            .into(holder.mFavArticleAvatar)
 
 
-        //Glide.with(context)
-        //    .load(favArticle.urlToImage)
-        //   .placeholder(R.drawable.ic_baseline_image_24)
-        //    .error(R.drawable.ic_baseline_image_24)
-        //    .skipMemoryCache(false)
-        //    .into(holder.mFavArticleAvatar)
-
-
-        //remove from fav after click
+//remove from fav after click
         holder.mFavFavoriteButton.setOnClickListener(View.OnClickListener {
             favDB.remove_fav(favArticle.id)
             removeItem(position)
         })
 
 
-
-
     }
-
 
 
     class ViewHolder(view: View) :
@@ -71,20 +62,22 @@ class ListFavArticlesAdapter(
         val mFavArticleName: TextView
         val mFavArticleDescription: TextView
         val mFavArticleAuthor: TextView
+        val mFavArticleDate: TextView
         val mFavFavoriteButton: ImageButton
 
         init {
-            // Enable click on item
+// Enable click on item
             mFavArticleAvatar = view.findViewById(R.id.fav_item_list_avatar)
             mFavArticleName = view.findViewById(R.id.fav_item_list_name)
             mFavArticleDescription = view.findViewById(R.id.fav_item_list_description)
             mFavArticleAuthor = view.findViewById(R.id.fav_item_list_author)
+            mFavArticleDate = view.findViewById(R.id.fav_item_list_date)
             mFavFavoriteButton = view.findViewById(R.id.fav_item_list_favorite_button)
         }
     }
 
     private fun removeItem(position: Int) {
-        favArticleList.drop(position)
+        favArticleList.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, favArticleList.size)
     }

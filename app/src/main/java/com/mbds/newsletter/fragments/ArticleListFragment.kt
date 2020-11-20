@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.ArticleRepository
@@ -19,9 +22,13 @@ import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.ArticleQuery
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ArticleListFragment : Fragment(), ListArticlesHandler {
     private lateinit var recyclerView: RecyclerView
+    //private var errorSnackBar: Snackbar? = null
+
+
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
      */
@@ -51,6 +58,13 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
     override fun getArticles() {
         lifecycleScope.launch(Dispatchers.IO) {
             val articles = ArticleRepository.getInstance().getArticles()
+
+//            if (articles != null) {
+//                bindData(articles)
+//            } else {
+//                displayError(R.string.request_error)
+//            }
+
             bindData(articles)
         }
     }
@@ -66,8 +80,10 @@ class ArticleListFragment : Fragment(), ListArticlesHandler {
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListArticlesAdapter(articles, this@ArticleListFragment)
+            val adapter = ListArticlesAdapter(articles, this@ArticleListFragment, requireContext())
             recyclerView.adapter = adapter
         }
     }
+
+
 }
