@@ -3,7 +3,7 @@
     <string name="app_name">Newsletter</string>
     <string name="top_headlines">Articles à la une</string>
     <string name="articles_list">Liste des articles</string>
-    <string name="articles">Article</string>
+    <string name="articles">Articles</string>
     <string name="articles_avatar">Illustration de l\'article</string>
     <string name="articles_favorite">Bouton mise en favori de l\'article</string>
     <string name="sources">Editeurs</string>
@@ -16,4 +16,12 @@
     <string name="countries_list">Liste des pays</string>
     <string name="countries_item">Pays</string>
     <string name="chips_item">Bouton Chip</string>
+    <string name="article_title">Titre article</string>
+    <string name="article_description">Description article</string>
+    <string name="article_author">Auteur article</string>
+    <string name="article_publishedAt">Article publié sur</string>
+    <string name="article_urlToImage">URL article vers image</string>
+    <string name="article_content">Contenu article</string>
+    <string name="article_favorite">"Article favori "</string>
+    <string name="article">Article</string>
 </resources>
