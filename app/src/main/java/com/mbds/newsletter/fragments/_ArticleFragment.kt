@@ -38,10 +38,6 @@ class _ArticleFragment: Fragment(), ListHeadlinesHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getArticles()
-
-        (activity as? NavigationListener)?.let {
-            it.updateTitle(R.string.articles_list)
-        }
     }
 
     /**

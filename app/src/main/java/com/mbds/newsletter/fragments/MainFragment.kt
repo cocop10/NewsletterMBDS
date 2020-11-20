@@ -43,11 +43,11 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as? NavigationListener)?.let {
-            it.updateTitle(R.string.articles_list)
             it.addChildFragment(_ArticleFragment(), R.id.list_articles_fragment)
             it.addChildFragment(_SourceFragment(), R.id.list_sources_fragment)
             it.addChildFragment(_CategoryFragment(), R.id.list_categories_fragment)
             it.addChildFragment(_CountryFragment(), R.id.list_countries_fragment)
+            it.updateTitle(R.string.app_name)
         }
     }
 }

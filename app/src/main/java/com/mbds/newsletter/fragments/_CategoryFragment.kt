@@ -38,10 +38,6 @@ class _CategoryFragment: Fragment(), ListSourcesHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getSources()
-
-        (activity as? NavigationListener)?.let {
-            it.updateTitle(R.string.articles_list)
-        }
     }
 
     /**
@@ -54,7 +50,6 @@ class _CategoryFragment: Fragment(), ListSourcesHandler {
     override fun showArticles(query: String) {
         (activity as? NavigationListener)?.let {
             it.showFragment(ArticleListFragment(query, "_CategoryFragment"))
-            it.updateTitle(R.string.articles_list)
         }
     }
 
