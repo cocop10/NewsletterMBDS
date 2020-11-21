@@ -7,11 +7,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.mbds.newsletter.fragments.AboutUsFragment
 import com.mbds.newsletter.fragments.ArticleListFragment
+import com.mbds.newsletter.fragments.FavArticleListFragment
 import com.mbds.newsletter.fragments.MainFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar
     private lateinit var aboutUs: ImageButton
+    private lateinit var favoriteList: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,11 +22,16 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         setSupportActionBar(toolbar)
 
         aboutUs = findViewById(R.id.item_about_button)
+        favoriteList = findViewById(R.id.item_list_favorite_button)
 
         showFragment(MainFragment())
 
         aboutUs.setOnClickListener {
             showFragment(AboutUsFragment())
+        }
+
+        favoriteList.setOnClickListener {
+            showFragment(FavArticleListFragment())
         }
     }
 

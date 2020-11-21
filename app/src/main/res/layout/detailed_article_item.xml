@@ -67,8 +67,8 @@
 
         <ImageView
             android:id="@+id/article_favorite"
-            android:layout_width="19dp"
-            android:layout_height="19dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/article_publishedAt"
             app:layout_constraintBottom_toBottomOf="@id/article_publishedAt"

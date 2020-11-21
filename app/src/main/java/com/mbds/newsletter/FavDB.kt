@@ -23,7 +23,7 @@ class FavDB(context: Context?) :
         description: String,
         author: String,
         urlToImage: String,
-        favorite: String
+        favorite: Boolean
     ) {
         val db: SQLiteDatabase
         db = this.writableDatabase

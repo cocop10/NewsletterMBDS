@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 
 class AboutUsFragment : Fragment() {
@@ -23,5 +24,8 @@ class AboutUsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as? NavigationListener)?.let {
+            it.updateTitle(R.string.title_aboutus)
+        }
     }
 }
