@@ -16,7 +16,8 @@ class AboutUsFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.about_us_fragment, container, false)
-
+        // Set the color
+        view.setBackgroundColor(getResources().getColor(android.R.color.white));
         return view
     }
 

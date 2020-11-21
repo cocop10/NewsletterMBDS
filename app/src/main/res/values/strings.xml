@@ -35,12 +35,14 @@
     <string name="link_repo_title"><u>GitHub Link</u></string>
     <string name="link_repo">https://github.com/ncao98/NewsletterMBDS</string>
     <string name="libraries_title"><u>External libraries</u></string>
-    <string name="librarie1">- Library 1</string>
-    <string name="librarie2">- Library 2</string>
-    <string name="librarie3">- Library 3</string>
-    <string name="librarie4">- Library 4</string>
-
-
+    <string name="librarie1">- Retro Fit for request</string>
+    <string name="librarie2">- sqlite for the DataBase</string>
+    <string name="librarie3">- androidx.navigation for the Nav bar</string>
+    <string name="functions_title"><u>Functions</u></string>
+    <string name="function1">- App Home Page with option of consultation (Source, Category, County)</string>
+    <string name="function2">- List of articles with the option imposed</string>
+    <string name="function3">- Possibility to add article to a favorite list</string>
+    <string name="function4">- Possibility to change the language (En, Fr)</string>
 
     <!-- menu bottom_nav_menu.xml -->
     <string name="title_article">Home</string>

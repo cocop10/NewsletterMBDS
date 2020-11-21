@@ -29,6 +29,8 @@ class _CountryFragment: Fragment(), ListSourcesHandler {
         val view = inflater.inflate(R.layout.list_chips_fragment, container, false)
         recyclerView = view.findViewById(R.id.chips_list)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        // Set the color
+        view.setBackgroundColor(getResources().getColor(android.R.color.white));
         return view
     }
 

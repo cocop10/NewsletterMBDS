@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp">
 
         <ImageView
@@ -44,19 +44,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
 
 
             <TextView
                 android:id="@+id/text_last_articles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:text="@string/team"
-                android:textColor="@color/rose"
+                android:textColor="@color/purple_500"
                 android:textSize="15dp" />
 
             <TextView
@@ -90,11 +90,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="3dp"
+                android:gravity="center"
                 android:text="@string/link_repo_title"
-                android:textColor="@color/rose"
+                android:textColor="@color/purple_500"
                 android:textSize="15dp" />
 
             <TextView
@@ -110,11 +110,11 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="3dp"
+                android:gravity="center"
                 android:text="@string/libraries_title"
-                android:textColor="@color/rose"
+                android:textColor="@color/purple_500"
                 android:textSize="15dp" />
 
             <TextView
@@ -144,16 +144,52 @@
                 android:text="@string/librarie3"
                 android:textSize="15dp" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:text="@string/functions_title"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="@string/librarie4"
+                android:text="@string/function1"
                 android:textSize="15dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/function2"
+                android:textSize="15dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/function3"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/function4"
+                android:textSize="15dp" />
         </LinearLayout>
 
 

@@ -22,7 +22,7 @@
     <string name="article_publishedAt">Article publié sur</string>
     <string name="article_urlToImage">URL article vers image</string>
     <string name="article_content">Contenu article</string>
-    <string name="article_favorite_list">Liste Articles favoris</string>
+    <string name="article_favorite_list">Liste des articles favoris</string>
     <string name="article_favorite">"Article favori "</string>
     <string name="article">Article</string>
 
@@ -35,11 +35,14 @@
     <string name="link_repo_title"><u>Lien de notre GitHub</u></string>
     <string name="link_repo">https://github.com/ncao98/NewsletterMBDS</string>
     <string name="libraries_title"><u>Librairies Externes</u></string>
-    <string name="librarie1">- Librairie 1</string>
-    <string name="librarie2">- Librairie 2</string>
-    <string name="librarie3">- Librairie 3</string>
-    <string name="librarie4">- Librairie 4</string>
-
+    <string name="librarie1">- Retro Fit pour les requètes</string>
+    <string name="librarie2">- sqlite pour la DataBase</string>
+    <string name="librarie3">- androidx.navigation for thepour la Nav bar</string>
+    <string name="functions_title"><u>Fonctionnalités</u></string>
+    <string name="function1">- Page d\'accueil de l\'application avec options de consultation (éditeurs, catégories, pays)</string>
+    <string name="function2">- Liste des articles selon l\'option selectionnée</string>
+    <string name="function3">- Possibilité d\'ajouter des articles à ses favoris</string>
+    <string name="function4">- Possibilité de traduire l\'application en Anglais</string>
 
 
     <!-- menu bottom_nav_menu.xml -->

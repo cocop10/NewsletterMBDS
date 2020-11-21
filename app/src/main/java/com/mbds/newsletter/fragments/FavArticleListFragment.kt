@@ -20,7 +20,7 @@ class FavArticleListFragment: Fragment()  {
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var favDB: FavDB
-    private var favArticleList: MutableList<FavArticle> = ArrayList<FavArticle>()
+    private var favArticleList: MutableList<FavArticle> = ArrayList()
     private lateinit var favAdapter: ListFavArticlesAdapter
     /**
      * Fonction permettant de définir une vue à attacher à un fragment
@@ -44,11 +44,12 @@ class FavArticleListFragment: Fragment()  {
 
         favDB = FavDB(activity)
         loadData(requireContext())
+        // Set the color
+        view.setBackgroundColor(getResources().getColor(android.R.color.white));
         return view
     }
 
     private fun loadData(context: Context) {
-
 
         if (favArticleList != null) {
             favArticleList.clear()

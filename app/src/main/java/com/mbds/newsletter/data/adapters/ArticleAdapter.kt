@@ -45,7 +45,11 @@ class ArticleAdapter(
         val context = holder.itemView.context
 
 
-        //article.id = position.toString()
+        //generate ID à partir de la date
+        val sdfPattern = SimpleDateFormat("yyMMddHHmmssSSS")
+        val dateId: Date = article.publishedAt
+        val idString = sdfPattern.format(dateId)
+        article.id = idString
 
         readCursorData(article, holder)
         //Conversion de la date
@@ -66,17 +70,18 @@ class ArticleAdapter(
             .skipMemoryCache(false)
             .into(holder.mArticleAvatar)
 
-        // Initialisation button fav
-        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-        else holder.mFavoriteButton.setImageResource(
-            R.drawable.ic_favorite_red_24dp
-        )
-
-        //test des valeurs null
+        // Test des valeurs null
         val title = if (article.title != null) article.title else ""
         val description = if (article.description != null) article.description else ""
         val author = if (article.author != null) article.author else ""
         val urlToImage = if (article.urlToImage != null) article.urlToImage else ""
+
+        // Check si article dans la bd fav
+        // Initialisation button fav
+        if (getCheck(idString)) holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
+        else holder.mFavoriteButton.setImageResource(
+            R.drawable.ic_baseline_favorite_border_24
+        )
 
         //add to fav btn
         holder.mFavoriteButton.setOnClickListener(View.OnClickListener {
@@ -154,5 +159,21 @@ class ArticleAdapter(
             if (cursor != null && cursor.isClosed) cursor.close()
             db.close()
         }
+    }
+
+    private fun getCheck(idString: String): Boolean {
+        val favIdList: MutableList<String> = ArrayList()
+        val db = favDB.readableDatabase
+        val cursor = favDB.select_all_favorite_list()
+        try {
+            while (cursor.moveToNext()) {
+                val id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID))
+                favIdList.add(id)
+            }
+        } finally {
+            if (cursor != null && cursor.isClosed) cursor.close()
+            db.close()
+        }
+        return favIdList.contains(idString)
     }
 }
