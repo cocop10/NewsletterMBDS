@@ -2,13 +2,16 @@ package com.mbds.newsletter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.mbds.newsletter.fragments.AboutUsFragment
 import com.mbds.newsletter.fragments.ArticleListFragment
 import com.mbds.newsletter.fragments.MainFragment
 
 class MainActivity : AppCompatActivity(), NavigationListener {
     private lateinit var toolbar: Toolbar
+    private lateinit var aboutUs: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -16,8 +19,13 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        aboutUs = findViewById(R.id.item_about_button)
+
         showFragment(MainFragment())
-//        showFragment(ArticleListFragment())
+
+        aboutUs.setOnClickListener {
+            showFragment(AboutUsFragment())
+        }
     }
 
     override fun showFragment(fragment: Fragment) {
