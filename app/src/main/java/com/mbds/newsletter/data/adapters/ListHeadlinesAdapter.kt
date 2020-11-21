@@ -32,13 +32,7 @@ class ListHeadlinesAdapter (
         val firstStart = prefs.getBoolean("firstStart", true)
         if (firstStart) {
             createTableOnFirstStart()
-        }
 
-        //create Id
-        val prefs_ListArticle: SharedPreferences = context.getSharedPreferences("prefs_ListArticle", Context.MODE_PRIVATE)
-        val firstStart_ListArticle = prefs_ListArticle.getBoolean("firstStart_ListArticle", true)
-        if (firstStart_ListArticle) {
-            getArticleId()
         }
 
         val view: View = LayoutInflater.from(parent.context)
@@ -56,8 +50,8 @@ class ListHeadlinesAdapter (
         val article: Article = mArticles.articles[position]
         val context = holder.itemView.context
 
-        article.favorite = "0"
-        //article.id = position.toString()
+        //article.favorite = "0"
+        article.id = position.toString()
 
         readCursorData(article, holder)
 
@@ -85,38 +79,37 @@ class ListHeadlinesAdapter (
 
 
         // Initialisation button fav
-        if (article.favorite == "0") holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        if (article.favorite =="1") holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
         else holder.mFavoriteButton.setImageResource(
-            R.drawable.ic_favorite_red_24dp
+            R.drawable.ic_baseline_favorite_border_24
         )
+
+        //test des valeurs null
+        val title = if (article.title != null) article.title else ""
+        val description = if (article.description != null) article.description else ""
+        val author = if (article.author != null) article.author else ""
+        val urlToImage = if (article.urlToImage != null) article.urlToImage else ""
 
         //add to fav btn
         holder.mFavoriteButton.setOnClickListener(View.OnClickListener {
-
             if (article.favorite == "0") {
-                try {
-                    article.favorite = "1"
-                    favDB.insertIntoTheDatabase(
-                        article.id,
-                        article.title,
-                        article.description,
-                        article.author,
-                        article.urlToImage,
-                        //dateString,
-                        article.favorite
-                    )
-                    holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
-                } finally {
-                }
-
+                article.favorite = "1"
+                favDB.insertIntoTheDatabase(
+                    article.id,
+                    title,
+                    description,
+                    author,
+                    urlToImage,
+                    //dateString,
+                    article.favorite
+                )
+                holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
             } else {
                 article.favorite = "0"
                 favDB.remove_fav(article.id)
                 holder.mFavoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
         })
-
-
     }
 
     override fun getItemCount(): Int {

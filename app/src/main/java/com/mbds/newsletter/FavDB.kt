@@ -44,10 +44,10 @@ class FavDB(context: Context?) :
     }
 
     // read all data
-    fun read_all_data(id: String): Cursor {
+    fun read_all_data(string: String): Cursor {
         val db = this.readableDatabase
         val sql =
-            "select * from $TABLE_NAME where $KEY_ID=$id"
+            "SELECT * FROM $TABLE_NAME WHERE $KEY_ID=$string"
         return db.rawQuery(sql, null, null)
     }
 
@@ -67,6 +67,7 @@ class FavDB(context: Context?) :
             "SELECT * FROM $TABLE_NAME WHERE $FAVORITE_STATUS ='1'"
         return db.rawQuery(sql, null, null)
     }
+
 
     companion object {
         private const val DB_VERSION = 1

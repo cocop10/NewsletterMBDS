@@ -44,7 +44,7 @@ class ArticleAdapter(
         val article: Article = mArticle
         val context = holder.itemView.context
 
-        article.favorite = "0"
+
         //article.id = position.toString()
 
         readCursorData(article, holder)
@@ -72,17 +72,22 @@ class ArticleAdapter(
             R.drawable.ic_favorite_red_24dp
         )
 
+        //test des valeurs null
+        val title = if (article.title != null) article.title else ""
+        val description = if (article.description != null) article.description else ""
+        val author = if (article.author != null) article.author else ""
+        val urlToImage = if (article.urlToImage != null) article.urlToImage else ""
+
         //add to fav btn
         holder.mFavoriteButton.setOnClickListener(View.OnClickListener {
-
             if (article.favorite == "0") {
                 article.favorite = "1"
                 favDB.insertIntoTheDatabase(
                     article.id,
-                    article.title,
-                    article.description,
-                    article.author,
-                    article.urlToImage,
+                    title,
+                    description,
+                    author,
+                    urlToImage,
                     //dateString,
                     article.favorite
                 )
