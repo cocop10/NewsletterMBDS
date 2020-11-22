@@ -16,7 +16,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:title="@string/app_name" />
+        app:title="@string/app_name"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -27,4 +27,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
+    <ImageButton
+        android:id="@+id/item_about_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="14.5dp"
+        android:background="@null"
+        android:contentDescription="@string/articles_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:srcCompat="@drawable/ic_baseline_info_36" />
+
+    <ImageButton
+        android:id="@+id/item_list_favorite_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="16dp"
+        android:background="@null"
+        android:contentDescription="@string/articles_favorite"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toStartOf="@id/item_about_button"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:srcCompat="@drawable/ic_baseline_favorite_36" />
 </androidx.constraintlayout.widget.ConstraintLayout>

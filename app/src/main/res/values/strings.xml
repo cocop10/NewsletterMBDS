@@ -24,4 +24,28 @@
     <string name="article_content">Article content</string>
     <string name="article_favorite">Article favorite</string>
     <string name="article">Article</string>
+    <string name="favorite_list">Favorites list</string>
+	
+	    <!-- about_us.xml -->
+    <string name="apropos_page">About us</string>
+    <string name="team"><u>Team</u></string>
+    <string name="coco">- Corentin POIRIER</string>
+    <string name="nico">- Nicolas CAO</string>
+    <string name="vince">- Vincent GUINALDO</string>
+    <string name="link_repo_title"><u>GitHub Link</u></string>
+    <string name="link_repo">https://github.com/ncao98/NewsletterMBDS</string>
+    <string name="libraries_title"><u>External libraries</u></string>
+    <string name="librarie1">- Retrofit for request</string>
+    <string name="librarie2">- SQLite for the database</string>
+    <string name="functions_title"><u>Features</u></string>
+    <string name="function1">- Homepage with consultation options (Source, Category, Country)</string>
+    <string name="function2">- Articles list according to the option selected</string>
+    <string name="function3">- Possibility to add article to a favorite list</string>
+    <string name="function4">- Possibility to change the language (en, fr)</string>
+
+    <!-- menu bottom_nav_menu.xml -->
+    <string name="title_article">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_aboutus">About us</string>
+	
 </resources>

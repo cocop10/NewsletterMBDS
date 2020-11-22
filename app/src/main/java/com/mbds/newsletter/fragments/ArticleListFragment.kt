@@ -79,7 +79,7 @@ class ArticleListFragment(query: String, nameFragment: String) : Fragment(), Lis
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListArticlesAdapter(articles, this@ArticleListFragment)
+            val adapter = ListArticlesAdapter(articles, this@ArticleListFragment, requireContext())
             recyclerView.adapter = adapter
         }
     }

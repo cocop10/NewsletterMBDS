@@ -62,7 +62,7 @@ class _HeadlinesFragment: Fragment(), ListHeadlinesHandler {
      */
     private fun bindData(articles: ArticleQuery) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val adapter = ListHeadlinesAdapter(articles, this@_HeadlinesFragment)
+            val adapter = ListHeadlinesAdapter(articles, this@_HeadlinesFragment, requireContext())
             recyclerView.adapter = adapter
         }
     }
