@@ -29,23 +29,29 @@
 	    <!-- about_us.xml -->
     <string name="apropos_page">About us</string>
     <string name="team"><u>Team</u></string>
-    <string name="coco">- Corentin POIRIER</string>
-    <string name="nico">- Nicolas CAO</string>
-    <string name="vince">- Vincent GUINALDO</string>
-    <string name="link_repo_title"><u>GitHub Link</u></string>
-    <string name="link_repo">https://github.com/ncao98/NewsletterMBDS</string>
-    <string name="libraries_title"><u>External libraries</u></string>
-    <string name="librarie1">- Retrofit for request</string>
-    <string name="librarie2">- SQLite for the database</string>
-    <string name="functions_title"><u>Features</u></string>
-    <string name="function1">- Homepage with consultation options (Source, Category, Country)</string>
-    <string name="function2">- Articles list according to the option selected</string>
-    <string name="function3">- Possibility to add article to a favorite list</string>
-    <string name="function4">- Possibility to change the language (en, fr)</string>
+    <string name="coco"><a href="https://www.linkedin.com/in/corentinpoirier/">Corentin POIRIER</a></string>
+    <string name="nico"><a href="https://www.linkedin.com/in/caon/">Nicolas CAO</a></string>
+    <string name="vince"><a href="https://www.linkedin.com/in/vincent-guinaldo-805b531a1/">Vincent GUINALDO</a></string>
+    <string name="link_repo_title">Repository link</string>
+    <string name="link_repo"><a href="https://github.com/ncao98/NewsletterMBDS">NewsletterMBDS</a></string>
+    <string name="libraries_title">External libraries</string>
+    <string name="librarie1">Retrofit for HTTP requests</string>
+    <string name="librarie2">SQLite for the internal database</string>
+    <string name="functions_title">Features</string>
+    <string name="function1">App homepage with consultation options (Source, Category, Country)</string>
+    <string name="function1bis">Top headlines articles shown according to the device language</string>
+    <string name="function2">Articles list according to the option selected</string>
+    <string name="function3">Possibility to add article to a favorite list</string>
+    <string name="function4">Texts translation according to the device language</string>
 
     <!-- menu bottom_nav_menu.xml -->
     <string name="title_article">Home</string>
-    <string name="title_favorite">Favorite</string>
+    <string name="title_favorite">Favorites</string>
     <string name="title_aboutus">About us</string>
-	
+    <string name="function5">Support of Light/Dark mode</string>
+    <string name="function6">Article details</string>
+    <string name="article_url">URL article</string>
+    <string name="query">Query</string>
+    <string name="function7">Search bar</string>
+
 </resources>

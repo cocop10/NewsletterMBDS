@@ -13,10 +13,12 @@ import com.mbds.newsletter.FavDB
 import com.mbds.newsletter.NavigationListener
 import com.mbds.newsletter.R
 import com.mbds.newsletter.data.adapters.ListFavArticlesAdapter
+import com.mbds.newsletter.data.adapters.ListFavArticlesHandler
+import com.mbds.newsletter.models.Article
 import com.mbds.newsletter.models.FavArticle
 import java.util.*
 
-class FavArticleListFragment: Fragment()  {
+class FavArticleListFragment: Fragment(), ListFavArticlesHandler  {
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var favDB: FavDB
@@ -62,14 +64,15 @@ class FavArticleListFragment: Fragment()  {
                 val author = cursor.getString(cursor.getColumnIndex(FavDB.ARTICLE_AUTHOR))
                 val id = cursor.getString(cursor.getColumnIndex(FavDB.KEY_ID))
                 val urlToImage = cursor.getString(cursor.getColumnIndex(FavDB.ARTICLE_IMAGE))
-                val favArticle = FavArticle(id, title, description, author, urlToImage)
+                val url = cursor.getString(cursor.getColumnIndex(FavDB.ARTICLE_URL))
+                val favArticle = FavArticle(id, title, description, author, urlToImage, url)
                 favArticleList.add(favArticle)
             }
         } finally {
             if (cursor != null && cursor.isClosed) cursor.close()
             db.close()
         }
-        favAdapter = ListFavArticlesAdapter(context, favArticleList)
+        favAdapter = ListFavArticlesAdapter(context, favArticleList, this@FavArticleListFragment)
         recyclerView.adapter = favAdapter
     }
 
@@ -80,6 +83,12 @@ class FavArticleListFragment: Fragment()  {
 
         (activity as? NavigationListener)?.let {
             it.updateTitle(R.string.favorite_list)
+        }
+    }
+
+    override fun showDetails(article: Article) {
+        (activity as? NavigationListener)?.let {
+            it.showFragment(ArticleFragment(article))
         }
     }
 }

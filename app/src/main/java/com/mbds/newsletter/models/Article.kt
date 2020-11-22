@@ -6,6 +6,7 @@ data class Article (
     var id: String,
     val title: String,
     val description: String,
+    val url: String,
     val author: String,
     val publishedAt: Date,
     val urlToImage: String,

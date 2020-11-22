@@ -70,7 +70,7 @@ class CategoryOnlineService : CategoryService {
     }
 
     companion object {
-        private const val apiKey = "3619955908054248a433678895e7c6e4"
+        private const val apiKey = "3980fad6691f4b4c8e5482ec4960015f"
         private const val apiUrl = "https://newsapi.org/"
     }
 }

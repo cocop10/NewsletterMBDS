@@ -6,7 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/article_urlToImage"
@@ -16,7 +16,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_image_24" />
+            app:srcCompat="@drawable/ic_baseline_image_24"
+            android:contentDescription="@string/article_urlToImage" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/article_author"
@@ -59,9 +60,17 @@
             android:id="@+id/article_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/article_content"
-            app:layout_constraintTop_toBottomOf="@+id/article_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/article_divider"/>
+        <TextView
+            android:id="@+id/article_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/article_url"
+            app:layout_constraintTop_toBottomOf="@+id/article_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -72,7 +81,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/article_publishedAt"
             app:layout_constraintBottom_toBottomOf="@id/article_publishedAt"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+            android:contentDescription="@string/article_favorite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
