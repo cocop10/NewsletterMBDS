@@ -52,4 +52,6 @@
     <string name="function5">Support du mode Clair/Sombre</string>
     <string name="function6">Détail des articles</string>
     <string name="article_url">Article URL</string>
+    <string name="query">Requête</string>
+    <string name="function7">Barre de recherche</string>
 </resources>

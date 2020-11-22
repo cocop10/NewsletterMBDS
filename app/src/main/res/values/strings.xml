@@ -51,5 +51,7 @@
     <string name="function5">Support of Light/Dark mode</string>
     <string name="function6">Article details</string>
     <string name="article_url">URL article</string>
+    <string name="query">Query</string>
+    <string name="function7">Search bar</string>
 
 </resources>

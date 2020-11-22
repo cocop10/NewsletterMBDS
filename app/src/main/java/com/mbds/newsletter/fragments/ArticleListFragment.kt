@@ -54,7 +54,7 @@ class ArticleListFragment(query: String, nameFragment: String) : Fragment(), Lis
         lifecycleScope.launch(Dispatchers.IO) {
             val articles: ArticleQuery
                     when (fragment) {
-                        "_ArticleFragment" -> articles = ArticleRepository.getInstance().getArticles(subject)
+                        "MainActivity" -> articles = ArticleRepository.getInstance().getArticles(subject)
                         "_CategoryFragment" -> articles = ArticleRepository.getInstance().getCategoryArticles(subject)
                         "_CountryFragment" -> articles = ArticleRepository.getInstance().getCountryArticles(subject)
                         "_SourceFragment" -> articles = ArticleRepository.getInstance().getSourceArticles(subject)
