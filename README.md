@@ -9,7 +9,13 @@ Groupe composé de:
 
 Les fonctionnalités principales développées:
 - Page d'accueil de l'application avec options de consultation (éditeurs, catégories, pays)
+- Articles à la une affichés selon la langue de l'appareil
 - Liste des articles selon l'option selectionnée
+- Détail des articles
+- Gestion des favoris
+- Traduction des textes (titres et non le contenu de l'article) en fonction de la langue de l'appareil
+- Support du mode Clair/Sombre
+- Barre de recherche
 
 Les contraintes à respecter:
 - Application développée sous Kotlin: OK
