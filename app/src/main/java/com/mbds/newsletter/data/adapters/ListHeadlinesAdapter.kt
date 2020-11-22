@@ -59,6 +59,7 @@ class ListHeadlinesAdapter(
         holder.mArticleDescription.text = article.description
         holder.mArticleAuthor.text = article.author
         holder.mArticleDate.text = dateString
+        holder.mArticleURL.text = article.url
 
         Glide.with(context)
             .load(article.urlToImage)
@@ -76,6 +77,7 @@ class ListHeadlinesAdapter(
         val description = if (article.description != null) article.description else ""
         val author = if (article.author != null) article.author else ""
         val urlToImage = if (article.urlToImage != null) article.urlToImage else ""
+        val url = if (article.url != null) article.url else ""
 
         // Check si article dans la bd fav
         // Initialisation button fav
@@ -95,7 +97,7 @@ class ListHeadlinesAdapter(
                     description,
                     author,
                     urlToImage,
-                    //dateString,
+                    url,
                     article.favorite
                 )
                 holder.mFavoriteButton.setImageResource(R.drawable.ic_favorite_red_24dp)
@@ -118,6 +120,7 @@ class ListHeadlinesAdapter(
         val mArticleDescription: TextView
         val mArticleAuthor: TextView
         val mArticleDate: TextView
+        val mArticleURL: TextView
         val mFavoriteButton: ImageView
         val mBackground: ConstraintLayout
 
@@ -128,6 +131,7 @@ class ListHeadlinesAdapter(
             mArticleDescription = view.findViewById(R.id.item_list_description)
             mArticleAuthor = view.findViewById(R.id.item_list_author)
             mArticleDate = view.findViewById(R.id.item_list_date)
+            mArticleURL = view.findViewById(R.id.article_url)
             mFavoriteButton = view.findViewById(R.id.item_list_favorite_button)
             mBackground = view.findViewById(R.id.background)
         }

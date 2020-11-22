@@ -1,12 +1,16 @@
 package com.mbds.newsletter.data.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mbds.newsletter.FavDB
@@ -15,7 +19,9 @@ import com.mbds.newsletter.R
 import com.mbds.newsletter.models.FavArticle
 
 class ListFavArticlesAdapter(
-    private val context: Context, private var favArticleList: MutableList<FavArticle>
+    private val context: Context,
+    private var favArticleList: MutableList<FavArticle>,
+    private val handler: ListFavArticlesHandler
 ) : RecyclerView.Adapter<ListFavArticlesAdapter.ViewHolder>() {
 
     private lateinit var favDB: FavDB
@@ -37,7 +43,6 @@ class ListFavArticlesAdapter(
         holder.mFavArticleAuthor.text = favArticle.author
         holder.mFavArticleDescription.text = favArticle.description
 
-
         Glide.with(context)
             .load(favArticle.urlToImage)
             .placeholder(R.drawable.ic_baseline_image_24)
@@ -52,7 +57,11 @@ class ListFavArticlesAdapter(
             removeItem(position)
         })
 
-
+        holder.mFavBackground.setOnClickListener {
+            context?.let {
+                openNewTabWindow(favArticle.url, it)
+            }
+        }
     }
 
 
@@ -64,6 +73,7 @@ class ListFavArticlesAdapter(
         val mFavArticleAuthor: TextView
         val mFavArticleDate: TextView
         val mFavFavoriteButton: ImageButton
+        val mFavBackground: ConstraintLayout
 
         init {
 // Enable click on item
@@ -73,6 +83,7 @@ class ListFavArticlesAdapter(
             mFavArticleAuthor = view.findViewById(R.id.fav_item_list_author)
             mFavArticleDate = view.findViewById(R.id.fav_item_list_date)
             mFavFavoriteButton = view.findViewById(R.id.fav_item_list_favorite_button)
+            mFavBackground = view.findViewById(R.id.favorite_background)
         }
     }
 
@@ -86,5 +97,12 @@ class ListFavArticlesAdapter(
         return favArticleList.size
     }
 
-
+    private fun openNewTabWindow(urls: String, context: Context) {
+        val uris = Uri.parse(urls)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        context.startActivity(intents)
+    }
 }

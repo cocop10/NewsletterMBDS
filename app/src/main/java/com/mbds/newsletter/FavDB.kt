@@ -23,6 +23,7 @@ class FavDB(context: Context?) :
         description: String,
         author: String,
         urlToImage: String,
+        url: String,
         favorite: Boolean
     ) {
         val db: SQLiteDatabase
@@ -32,6 +33,7 @@ class FavDB(context: Context?) :
         cv.put(ARTICLE_DESCRIPTION, description)
         cv.put(ARTICLE_AUTHOR, author)
         cv.put(ARTICLE_IMAGE, urlToImage)
+        cv.put(ARTICLE_URL, url)
         cv.put(KEY_ID, id)
         cv.put(FAVORITE_STATUS, favorite)
         db.insert(TABLE_NAME, null, cv)
@@ -76,12 +78,13 @@ class FavDB(context: Context?) :
         var ARTICLE_DESCRIPTION = "articleDescription"
         var ARTICLE_AUTHOR = "articleAuthor"
         var ARTICLE_IMAGE = "articleImage"
+        var ARTICLE_URL = "articleURL"
         var FAVORITE_STATUS = "fStatus"
 
 
         private val CREATE_TABLE =
             ("CREATE TABLE " + TABLE_NAME + "("
                     + KEY_ID + " TEXT," + ARTICLE_TITLE + " TEXT," + ARTICLE_DESCRIPTION + " TEXT," + ARTICLE_AUTHOR + " TEXT,"
-                    + ARTICLE_IMAGE + " TEXT," + FAVORITE_STATUS + " TEXT)")
+                    + ARTICLE_IMAGE + " TEXT," + ARTICLE_URL + " TEXT," + FAVORITE_STATUS + " TEXT)")
     }
 }

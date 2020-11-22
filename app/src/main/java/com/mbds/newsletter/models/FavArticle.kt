@@ -6,6 +6,6 @@ data class FavArticle (
     val title: String,
     val description: String,
     val author: String,
-    val urlToImage: String
-
+    val urlToImage: String,
+    val url: String
 )
